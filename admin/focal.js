@@ -2,6 +2,7 @@
   var h = window.h;
   var createClass = window.createClass;
   var CMS = window.CMS;
+  var media = window.CMSMedia;
 
   function parsePair(value) {
     var raw = value;
@@ -20,39 +21,58 @@
     };
   }
 
-  function isRealPhoto(img) {
-    if (!img) return false;
-    if (img.closest && img.closest(".focal-frame")) return false;
-    var src = img.currentSrc || img.src || "";
-    if (!src || src.indexOf("empty.svg") !== -1) return false;
-    if (img.naturalWidth > 0 && img.naturalWidth < 4) return false;
-    return /blob:|data:image|assets\/blog|raw\.githubusercontent/i.test(src) || img.naturalWidth > 40;
+  function unwrap(value) {
+    if (value == null) return "";
+    if (typeof value === "string") return value;
+    if (typeof value.get === "function" && value.get("image")) return unwrap(value.get("image"));
+    return String(value);
   }
 
-  function findNeighborPhoto(start) {
-    if (!start) return "";
-    var imgs = document.querySelectorAll("img");
-    var closest = "";
-    for (var i = 0; i < imgs.length; i += 1) {
-      if (!isRealPhoto(imgs[i])) continue;
-      if (start.contains && start.contains(imgs[i])) continue;
-      if (imgs[i].compareDocumentPosition(start) & Node.DOCUMENT_POSITION_FOLLOWING) {
-        closest = imgs[i].currentSrc || imgs[i].src;
-      }
+  function fieldPath(props) {
+    var field = props.field;
+    var names = [];
+    if (field && field.get && field.get("media_field")) {
+      names.push(field.get("media_field"));
+    } else {
+      names.push("image");
     }
-    if (closest) return closest;
+    var entry = props.entry;
+    if (!entry) return "";
+    for (var i = 0; i < names.length; i += 1) {
+      var value = entry.getIn(["data", names[i]]);
+      if (value == null) value = entry.get(names[i]);
+      value = unwrap(value);
+      if (media.hasMedia(value)) return value;
+    }
+    return "";
+  }
+
+  function neighborPath(start) {
+    if (!start) return "";
     var node = start;
     while (node && node !== document.body) {
       var sib = node.previousElementSibling;
       while (sib) {
-        var nested = sib.querySelectorAll("img");
-        for (var j = nested.length - 1; j >= 0; j -= 1) {
-          if (isRealPhoto(nested[j])) return nested[j].currentSrc || nested[j].src;
+        if (sib.querySelector && sib.querySelector(".focal-frame")) {
+          sib = sib.previousElementSibling;
+          continue;
         }
-        var bg = window.getComputedStyle(sib).backgroundImage;
-        if (bg && bg.indexOf("blob:") !== -1) {
-          return bg.replace(/^url\(["']?/, "").replace(/["']?\)$/, "");
+        var imgs = sib.querySelectorAll ? sib.querySelectorAll("img") : [];
+        for (var i = imgs.length - 1; i >= 0; i -= 1) {
+          var src = imgs[i].getAttribute("src") || imgs[i].currentSrc || imgs[i].src || "";
+          if (!src || src.indexOf("empty.svg") !== -1) continue;
+          if (src.indexOf("blob:") === 0 || src.indexOf("data:") === 0) {
+            var label = (sib.textContent || "").match(/[\w.-]+\.(jpe?g|png|gif|webp|avif)/i);
+            media.remember(label ? label[0] : src, src);
+            return src;
+          }
+          if (/assets\/blog|raw\.githubusercontent|\.(jpe?g|png|gif|webp|avif)(\?|$)/i.test(src)) {
+            return src;
+          }
         }
+        var text = sib.textContent || "";
+        var match = text.match(/[\w.-]+\.(jpe?g|png|gif|webp|avif)/i);
+        if (match) return match[0];
         sib = sib.previousElementSibling;
       }
       node = node.parentElement;
@@ -79,7 +99,8 @@
       window.removeEventListener("mousemove", this.moveDrag);
     },
     syncPhoto: function () {
-      var src = findNeighborPhoto(this._root);
+      var path = fieldPath(this.props) || neighborPath(this._root);
+      var src = media.resolve(this.props.getAsset, path, this.props.field);
       if (src && src !== this.state.src) this.setState({ src: src });
     },
     setPair: function (x, y) {
@@ -88,6 +109,7 @@
       this.props.onChange(x + " " + y);
     },
     pointFromEvent: function (event) {
+      if (!this._frame) return null;
       var rect = this._frame.getBoundingClientRect();
       if (!rect.width || !rect.height) return null;
       return {
@@ -110,7 +132,6 @@
     },
     stopDrag: function () {
       if (this.state.dragging) this.setState({ dragging: false });
-      this._last = null;
     },
     render: function () {
       var pair = parsePair(this.props.value);

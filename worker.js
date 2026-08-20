@@ -63,7 +63,7 @@ collections:
         hint: "Add photos, then click Visible area to crop. A carousel appears on the post only if there are more than 5."
         fields:
           - { name: image, label: Photo, widget: image }
-          - { name: focus, label: Visible area, widget: focalPoint, required: false }
+          - { name: focus, label: Visible area, widget: focalPoint, required: false, media_field: image }
       - { label: Excerpt, name: excerpt, widget: text }
       - { label: Card title, name: card_title, widget: string, required: false, hint: "One word on the listing card and the post eyebrow, e.g. Travel." }
       - label: Tags

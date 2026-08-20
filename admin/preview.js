@@ -25,29 +25,11 @@
   }
 
   function hasMedia(value) {
-    if (value == null || value === false) return false;
-    var path = typeof value === "string" ? value : String(value);
-    return Boolean(path) && path !== "undefined" && path !== "[object Object]" && path !== "empty.svg";
+    return window.CMSMedia.hasMedia(value);
   }
 
   function assetUrl(getAsset, value) {
-    if (!hasMedia(value)) return "";
-    var path = typeof value === "string" ? value : String(value);
-    try {
-      var asset = getAsset(value);
-      var url = "";
-      if (asset) {
-        if (asset.url) url = asset.url;
-        else if (typeof asset.toString === "function") url = asset.toString();
-      }
-      if (url && url.indexOf("empty.svg") === -1) return url;
-    } catch (err) {
-      /* fall through to public path */
-    }
-    if (path.indexOf("http") === 0 || path.indexOf("blob:") === 0 || path.indexOf("data:") === 0) {
-      return path;
-    }
-    return path.charAt(0) === "/" ? path : "/" + path.replace(/^\/+/, "");
+    return window.CMSMedia.resolve(getAsset, value);
   }
 
   function isEditorPhoto(img) {
@@ -204,7 +186,7 @@
   });
 
   CMS.registerPreviewStyle("/css/styles.css");
-  CMS.registerPreviewStyle("/admin/preview.css?v=crop3");
+  CMS.registerPreviewStyle("/admin/preview.css?v=draft-media");
   CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
   CMS.registerPreviewTemplate("blog", BlogPreview);
 })();
