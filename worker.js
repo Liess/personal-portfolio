@@ -55,12 +55,23 @@ collections:
         required: false
         field: { label: Image, name: image, widget: image }
       - { label: Excerpt, name: excerpt, widget: text }
+      - label: Card
+        name: card
+        widget: object
+        collapsed: false
+        hint: "Listing card on Side quest and All blogs. Leave a field blank to fall back to the post."
+        fields:
+          - { label: Image, name: image, widget: image, required: false, hint: "Falls back to Cover Image." }
+          - { label: Title, name: title, widget: string, required: false, hint: "Falls back to Title." }
+          - { label: Excerpt, name: excerpt, widget: text, required: false, hint: "Falls back to Excerpt." }
+          - { label: Label, name: label, widget: string, required: false, hint: "Small kicker such as Travel. Falls back to the first tag." }
       - label: Tags
         name: tags
         widget: list
         required: false
-        hint: "Add showcase to feature a post on Side quest (up to 3)."
+        hint: "Add an item named showcase to feature this post on Side quest (up to 3)."
         field: { label: Tag, name: tag, widget: string }
+      - { label: Showcase, name: showcase, widget: boolean, default: false, hint: "Also features the post on Side quest." }
       - { label: Body, name: body, widget: markdown }
       - { label: Published, name: published, widget: boolean, default: false }
 `;

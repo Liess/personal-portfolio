@@ -41,15 +41,29 @@
           <p class="eyebrow" id="blog-tag">Blog</p>
           <h1 class="display" id="blog-title">Loading</h1>
           <p class="lead quest-lead" id="blog-excerpt"></p>
+          <p class="blog-place" id="blog-place" hidden></p>
           <div class="quest-jump">
             <a href="side-quest.html#blogs">← Blogs</a>
           </div>
         </div>
       </section>
-      <section>
-        <div class="wide">
-          <img id="blog-cover" class="blog-cover" alt="" hidden />
-          <div class="blog-gallery" id="blog-gallery" hidden></div>
+      <section class="blog-main">
+        <div class="blog-article">
+          <figure class="blog-cover-frame" id="blog-cover-frame" hidden>
+            <img id="blog-cover" class="blog-cover" alt="" />
+          </figure>
+          <div class="blog-gallery-wrap" id="blog-gallery-wrap" hidden>
+            <div class="blog-gallery-viewport">
+              <div class="blog-gallery-track" id="blog-gallery"></div>
+            </div>
+            <div class="blog-gallery-bar" id="blog-gallery-bar" hidden>
+              <span class="blog-gallery-num" id="blog-gallery-num"></span>
+              <div class="work-nav">
+                <button type="button" id="blog-gallery-prev" aria-label="Previous photos">←</button>
+                <button type="button" id="blog-gallery-next" aria-label="Next photos">→</button>
+              </div>
+            </div>
+          </div>
           <article class="blog-body" id="blog-body"></article>
         </div>
       </section>
@@ -57,6 +71,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked@15.0.0/marked.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/blog.js"></script>
+    <script src="js/blog.js?v=card-hero"></script>
   </body>
 </html>

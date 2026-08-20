@@ -2191,6 +2191,23 @@ time {
   display: block;
 }
 
+.quest-blogs article,
+.quest-blogs a.quest-blog-link {
+  padding: 0;
+  overflow: hidden;
+}
+
+.quest-blog-thumb {
+  display: block;
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+}
+
+.quest-blog-copy {
+  padding: 22px 24px 24px;
+}
+
 a.quest-place:hover,
 a.quest-blog-link:hover {
   border-color: rgba(142, 182, 217, 0.35);
@@ -3084,47 +3101,205 @@ a.quest-blog-link:hover {
   color: var(--teal);
 }
 
-.blog-body {
-  max-width: 720px;
-  color: var(--ink);
-  font-size: 1.02rem;
-  line-height: 1.7;
+.blog-page .quest-hero {
+  padding-bottom: 28px;
 }
 
+.blog-page .quest-lead {
+  margin-bottom: 0;
+}
+
+.blog-place {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.blog-place[hidden] {
+  display: none;
+}
+
+.blog-page .display {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.12;
+}
+
+.blog-main {
+  padding: 0 var(--gutter) 96px;
+}
+
+.blog-article {
+  max-width: var(--page);
+  margin: 0 auto;
+}
+
+.blog-cover-frame {
+  width: 100%;
+  height: min(420px, 46vh);
+  margin: 0 0 36px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.blog-cover-frame .blog-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.blog-gallery-wrap {
+  margin: 0 0 36px;
+}
+
+.blog-gallery-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.blog-gallery-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.35s ease;
+}
+
+.blog-gallery-page {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.blog-gallery-page img {
+  display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.blog-gallery-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.blog-gallery-bar[hidden],
+.blog-gallery-wrap[hidden] {
+  display: none;
+}
+
+.blog-gallery-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.blog-gallery-wrap .work-nav {
+  margin-top: 0;
+}
+
+.blog-body {
+  max-width: none;
+  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.blog-body > *:first-child {
+  margin-top: 0;
+}
+
+.blog-body > *:last-child {
+  margin-bottom: 0;
+}
+
+.blog-body h1,
 .blog-body h2,
 .blog-body h3 {
-  margin: 1.6rem 0 0.6rem;
+  margin: 1.75rem 0 0.7rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 .blog-body p,
 .blog-body ul,
 .blog-body ol {
-  margin-bottom: 1rem;
+  margin: 0 0 1.15rem;
+  color: var(--muted);
 }
 
-.blog-cover {
-  display: block;
-  width: 100%;
-  max-width: 960px;
-  max-height: 72vh;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-bottom: 24px;
+.blog-body li {
+  margin: 0.35rem 0 0.35rem 1.2rem;
 }
 
-.blog-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-  max-width: 960px;
-  margin: 0 0 32px;
+.blog-body a {
+  color: var(--teal);
 }
 
-.blog-gallery img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.blog-body hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 1.75rem 0;
+}
+
+.blog-body blockquote {
+  margin: 0 0 1.15rem;
+  padding: 0.15rem 0 0.15rem 1rem;
+  border: 0;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+
+.blog-body pre,
+.blog-body code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9em;
+}
+
+.blog-body pre {
+  overflow-x: auto;
+  margin: 0 0 1.15rem;
+  padding: 1rem 1.1rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 12px;
+}
+
+.blog-body img {
+  display: block;
+  max-width: 100%;
+  max-height: 420px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 1.25rem 0;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 640px) {
+  .blog-cover-frame {
+    height: min(260px, 38vh);
+  }
+
+  .blog-gallery-page {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .blog-gallery-page img {
+    height: 72px;
+    border-radius: 8px;
+  }
 }
 
 .quest-close {
