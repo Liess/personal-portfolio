@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ernest John Maskariño | Senior Integration Consultant</title>
+    <meta
+      name="description"
+      content="Senior Integration Consultant specializing in API-led integrations, Java backends, and production support across APAC."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a2330'/><text x='50' y='64' text-anchor='middle' font-size='36' font-family='Inter' fill='%238eb6d9'>EJ</text></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <header class="site-header" id="header">
+      <div class="header-inner">
+      <a href="#home" class="brand">
+        <span>EJ</span>
+        <small>/ Maskariño</small>
+      </a>
+      <nav>
+        <a href="#about" class="nav-flip"><span>ABOUT</span><span>ABOUT</span></a>
+        <a href="#career" class="nav-flip"><span>CAREER</span><span>CAREER</span></a>
+        <a href="#work" class="nav-flip"><span>WORK</span><span>WORK</span></a>
+        <a href="side-quest.html" class="nav-flip"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
+        <a href="investment.html" class="nav-flip"><span>INVESTMENT PORTFOLIO</span><span>INVESTMENT PORTFOLIO</span></a>
+        <a href="#contact" class="nav-flip"><span>CONTACT</span><span>CONTACT</span></a>
+      </nav>
+      </div>
+    </header>
+
+    <aside class="social-rail" aria-label="Social links">
+      <span class="rail-line"></span>
+      <a href="https://www.linkedin.com/in/ejmaskarino" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="mailto:maskarinoernestjohn@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+      </a>
+      <a href="tel:+639151373096" aria-label="Phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <span class="rail-line down"></span>
+    </aside>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="glow glow-a"></div>
+        <div class="glow glow-b"></div>
+        <div class="hero-grid">
+          <div>
+            <p class="hero-greeting fade-in">Hello! I'm</p>
+            <h1 class="hero-name fade-in">
+              ERNEST<br /><span>JOHN</span>
+            </h1>
+            <div class="hero-role fade-in">
+              <div class="hero-title">Senior Integration Consultant</div>
+              <p>
+                Lead Consultant at
+                <a href="https://www.cgi.com/philippines/en" target="_blank" rel="noopener noreferrer">
+                <strong>CGI Philippines</strong>
+                </a>
+                <span class="dot">·</span>
+                APIs, integrations, and production systems
+              </p>
+            </div>
+            <div class="hero-cta fade-in">
+              <a class="btn-resume" href="ejmaskarino-cv.pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+                Resume
+              </a>
+              <a class="link-touch" href="#contact">Get in touch <span>→</span></a>
+            </div>
+          </div>
+          <div class="hero-portrait fade-in">
+            <div class="portrait">
+              <img src="profile.png" alt="Ernest John Maskariño" />
+              <div class="portrait-fade"></div>
+              <p>Ernest John Maskariño</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="chat-bar-wrap">
+        <button class="chat-bar" id="chat-open" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
+          <span>Ask me anything about my work, experience, or background...</span>
+          <em>Chat</em>
+        </button>
+      </div>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#00a0df">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 3.5 3.5-3.5 3.5 3.5-3.5 3.5z"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="about">
+        <div class="narrow">
+          <h3 class="eyebrow">About Me</h3>
+          <p class="lead">
+            I’m a Lead Consultant and Senior MuleSoft Developer specializing in API development, system integration, and enterprise solutions. 
+            I have experience working with complex integrations and production systems, helping businesses connect applications and streamline their processes.
+          </p>
+          <p class="body">
+            I treat APIs as products: RAML contracts, MUnit tests, CI/CD, and
+            documentation get the same attention as the happy path. I grew from
+            intern at INDRA to senior integration engineer — utilities companies,
+            Digital and traditional banking, Retail, e-commerce.
+          </p>
+          <p class="body">
+            Today, I support post-production operations for Christian Dior across EMEA and global markets,
+            coordinating releases with stakeholders and strengthening the standards that keep production stable and reliable.
+          </p>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#ed8b00">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 21h20v-2H2v2zm2-4h4V7H4v10zm6 0h4V3h-4v14zm6 0h4v-8h-4v8z"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="what">
+        <div class="wide split">
+          <h2 class="display">W<span class="dim">HAT</span><br />I<span class="accent"> DO</span></h2>
+          <div class="accordion">
+            <button class="acc-item is-open" data-acc>
+              <div>
+                <h3>API INTEGRATION</h3>
+                <h4>API-led connectivity using Mulesoft</h4>
+              </div>
+              <span class="chev">⌄</span>
+              <p>
+                Designing and developing APIs and integrations that connect MuleSoft with enterprise applications, OMS platforms, 
+                and third-party systems, enabling secure, reliable, and seamless data exchange across business processes.
+              </p>
+            </button>
+            <button class="acc-item" data-acc>
+              <div>
+                <h3>MULESOFT DEVELOPMENT</h3>
+                <h4>MuleSoft Certified Developer L1</h4>
+              </div>
+              <span class="chev">⌄</span>
+              <p>
+                Design, develop, and maintain scalable integration solutions.
+              </p>
+            </button>
+            <button class="acc-item" data-acc>
+              <div>
+                <h3>TECHNICAL CONSULTING</h3>
+                <h4>Senior Integration Consultant</h4>
+              </div>
+              <span class="chev">⌄</span>
+              <p>
+                Help businesses improve integration architecture, automation, and system connectivity.
+              </p>
+            </button>
+            <button class="acc-item" data-acc>
+              <div>
+                <h3>BACKEND ENGINEERING</h3>
+                <h4>Java, Spring, and REST from scratch</h4>
+              </div>
+              <span class="chev">⌄</span>
+              <p>
+                Built promotion APIs for GCash on SOFABoot, eMPF backends with
+                Spring and JPA, and water-industry platforms in Java EE, Angular,
+                and .NET — SAD, specs, and production deploys.
+              </p>
+            </button>
+            <button class="acc-item" data-acc>
+              <div>
+                <h3>PRODUCTION SUPPORT</h3>
+                <h4>SLAs, RCA, CI/CD, and stability</h4>
+              </div>
+              <span class="chev">⌄</span>
+              <p>
+                Incident management, bottleneck hunting, code reviews, deployment
+                pipelines, and stakeholder release planning across Japan, EMEA,
+                and APAC post-production work.
+              </p>
+            </button>
+            <button class="acc-item" data-acc>
+              <div>
+                <h3>AI PROJECTS</h3>
+                <h4>AI Tutoring and development</h4>
+              </div>
+              <span class="chev">⌄</span>
+              <p>
+                Work on AI-related projects, including AI training and evaluation.
+              </p>
+            </button>
+            <button class="acc-item" data-acc>
+              <div>
+                <h3>FREELANCE AND COLLABORATIONS</h3>
+              </div>
+              <span class="chev">⌄</span>
+              <p>
+                I am open to do freelance and collaborations. Please let me know if you have a exciting project for us to do.
+              </p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#0acf83">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section class="metrics">
+        <div class="wide metrics-grid">
+          <div class="metric fade-up">
+            <div><span class="js-count js-years" data-suffix="+"></span></div>
+            <p>Years shipping software</p>
+          </div>
+          <div class="metric fade-up">
+            <div><span class="js-count" data-target="6"></span></div>
+            <p>Companies across APAC</p>
+          </div>
+          <div class="metric fade-up">
+            <div><span class="js-count" data-target="2"></span></div>
+            <p>Freelance Projects</p>
+          </div>
+          <div class="metric fade-up">
+            <div>MCD</div>
+            <p>MuleSoft Certified Developer L1</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#017cee">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="lifecycle">
+        <div class="wide">
+          <h3 class="eyebrow">End-to-End</h3>
+          <h2>The API-led stack</h2>
+          <p class="sub">Click a layer to explore.</p>
+          <div class="life-grid">
+            <div class="pyramid" id="pyramid">
+              <button data-layer="0" style="width:52%;margin-left:24%">API Manager / Governance</button>
+              <button data-layer="1" style="width:62%;margin-left:19%">Experience APIs</button>
+              <button data-layer="2" style="width:72%;margin-left:14%">Process APIs</button>
+              <button data-layer="3" style="width:82%;margin-left:9%">System APIs</button>
+              <button data-layer="4" style="width:91%;margin-left:4.5%">Runtime / CI/CD / Support</button>
+              <button class="is-active" data-layer="5" style="width:100%">Core systems &amp; channels</button>
+            </div>
+            <div class="layer-card" id="layer-card">
+              <div class="layer-icon">▣</div>
+              <h4 id="layer-title">Core systems &amp; channels</h4>
+              <p id="layer-copy">
+                Shopify, core banking, retail, and department systems that become
+                reusable APIs — Metrobank CDD, Shiseido commerce, Razer AMS, and
+                internal channels that consume them.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#0078d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="career">
+        <div class="career-wrap">
+          <h2>My career <span class="accent">&amp;</span><br />experience</h2>
+          <div class="timeline">
+            <article class="career-card">
+              <span class="dot pulse"></span>
+              <div class="career-head">
+                <div>
+                  <h4>Senior Lead Consultant</h4>
+                  <h5>CGI</h5>
+                  <p>Full-time · EMEA / Global programs</p>
+                </div>
+                <time>NOW</time>
+              </div>
+              <p>
+                A CGI partner specializing in Mulesoft Integrations for Christian Dior across EMEA and global markets.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot pulse"></span>
+              <div class="career-head">
+                <div>
+                  <h4>AI Tutor</h4>
+                  <h5>xAI</h5>
+                  <p>Part-time ·Grok AI</p>
+                </div>
+                <time>2026</time>
+              </div>
+              <p>
+                Evaluated and annotated AI responses to improve accuracy, quality, and instruction following. 
+                Provided human feedback to enhance Grok’s language understanding and response generation.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot pulse"></span>
+              <div class="career-head">
+                <div>
+                  <h4>Senior MuleSoft Developer</h4>
+                  <h5>Viseo Asia</h5>
+                  <p>Full-time · Japan / APAC programs</p>
+                </div>
+                <time>2026</time>
+              </div>
+              <p>
+                Shopify and third-party integrations, Shiseido post-production,
+                Razer design work, CI/CD, incident RCA, performance tuning, and
+                release coordination.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot"></span>
+              <div class="career-head">
+                <div>
+                  <h4>Freelance MuleSoft Developer</h4>
+                  <h5>Viseo Asia</h5>
+                  <p>Shiseido Japan &amp; EMEA</p>
+                </div>
+                <time>2025</time>
+              </div>
+              <p>
+                Retail APIs on Anypoint Platform, Shopify connectivity, and SLA-bound
+                troubleshooting before converting to full-time senior.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot"></span>
+              <div class="career-head">
+                <div>
+                  <h4>MuleSoft Developer</h4>
+                  <h5>Collabera · Metropolitan Bank &amp; Trust Co.</h5>
+                  <p>CDD department</p>
+                </div>
+                <time>2023</time>
+              </div>
+              <p>
+                API-led design in Design Center, fragments and libraries, MUnit,
+                and SIT / UAT / PROD with the client DevOps team.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot"></span>
+              <div class="career-head">
+                <div>
+                  <h4>Associate Integration Consultant</h4>
+                  <h5>Capgemini Philippines</h5>
+                  <p>Central Retail Group</p>
+                </div>
+                <time>2022</time>
+              </div>
+              <p>
+                Object Store caching, ActiveMQ/JMS, Scatter-Gather, MUnit, and
+                Runtime Manager deployments.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot"></span>
+              <div class="career-head">
+                <div>
+                  <h4>Solutions / Backend Developer</h4>
+                  <h5>PCCW Solutions</h5>
+                  <p>eMPF platform</p>
+                </div>
+                <time>2021</time>
+              </div>
+              <p>
+                Systems analysis, API specs, and Java / Spring / JPA / Hibernate
+                backends from requirements through delivery.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot"></span>
+              <div class="career-head">
+                <div>
+                  <h4>Backend Developer</h4>
+                  <h5>Collabera · Globe Fintech / GCash</h5>
+                  <p>Promotion domain</p>
+                </div>
+                <time>2021</time>
+              </div>
+              <p>
+                Promotion APIs on SOFABoot, Alipay, SOFAstack, White Castle, and ESB
+                in an agile fintech team.
+              </p>
+            </article>
+            <article class="career-card">
+              <span class="dot"></span>
+              <div class="career-head">
+                <div>
+                  <h4>Software Engineer / Full Stack</h4>
+                  <h5>INDRA Philippines</h5>
+                  <p>Water utilities · intern to full-time</p>
+                </div>
+                <time>2017</time>
+              </div>
+              <p>
+                VB.NET and SQL Server apps, then Java EE, Angular 4, Spring, and
+                MySQL to replace legacy water-industry software. Mentored interns.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#f2c811">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="work">
+        <div class="wide">
+          <h2>My <span class="accent">Work</span></h2>
+          <div class="work-stage">
+            <div class="work-num" id="work-num">01</div>
+            <div>
+              <div id="work-content"></div>
+              <div class="work-nav">
+                <button id="work-prev" aria-label="Previous project">←</button>
+                <div class="work-dots" id="work-dots"></div>
+                <button id="work-next" aria-label="Next project">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#ed8b00">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="stack">
+        <div class="wide">
+          <h3 class="eyebrow">Technologies</h3>
+          <h2>Depth over logos</h2>
+          <p class="sub">What I run in practice.</p>
+          <div class="stack-grid">
+            <article>
+              <h3>Integrate</h3>
+              <div class="chips">
+                <span>Mule ESB 4</span><span>Anypoint Platform</span><span>API Manager</span><span>RAML</span><span>MUnit</span>
+              </div>
+            </article>
+            <article>
+              <h3>Build</h3>
+              <div class="chips">
+                <span>Java / Java EE</span><span>Spring Boot</span><span>SOFABoot</span><span>C# / VB.NET</span><span>Angular</span><span>JPA / Hibernate</span>
+              </div>
+            </article>
+            <article>
+              <h3>Move data</h3>
+              <div class="chips">
+                <span>MySQL</span><span>SQL Server</span><span>RabbitMQ</span><span>Google Pub/Sub</span><span>AWS messaging</span><span>JSON / XML</span>
+              </div>
+            </article>
+            <article>
+              <h3>Ship</h3>
+              <div class="chips">
+                <span>Git</span><span>CI/CD</span><span>JUnit / Mockito</span><span>Anypoint Studio</span><span>IntelliJ</span><span>Eclipse</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#00d4aa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="build">
+        <div class="wide">
+          <h3 class="eyebrow">How I ship</h3>
+          <h2>Tools that stay in the loop</h2>
+          <p class="sub">The two environments I live in on integration work.</p>
+          <div class="build-grid">
+            <article>
+              <h3>Anypoint Platform</h3>
+              <p class="tag">Daily driver</p>
+              <p>
+                Design Center for contracts and fragments, Studio for flows,
+                API Manager for policies, Runtime Manager for deploy and health.
+                Code reviews enforce MuleSoft standards before a release leaves
+                the pipeline.
+              </p>
+              <div class="chips">
+                <span>Design Center</span><span>Studio</span><span>API Manager</span><span>MUnit</span>
+              </div>
+            </article>
+            <article>
+              <h3>Java &amp; Spring</h3>
+              <p class="tag">Backend foundation</p>
+              <p>
+                When the work is a service rather than a flow — GCash promotions,
+                eMPF, water platforms — I still reach for Java, Spring, JPA, and
+                REST, with JUnit/Mockito covering the same path MUnit covers on
+                Mule.
+              </p>
+              <div class="chips">
+                <span>Spring Boot</span><span>JPA</span><span>REST</span><span>JUnit</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:var(--accent)" title="MuleSoft">
+          <svg viewBox="0 0 100 100" fill="none" aria-label="MuleSoft">
+            <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="6.5"/>
+            <path fill="currentColor" d="M50 19c1.2 0 24.2 35.2 26.6 47.2 1.5 7.4-4 13.6-11.4 12.2-3.8-1.5-9.2-11.8-13-18.4L50 52l-2.2 8c-3.8 6.6-9.2 16.9-13 18.4-7.4 1.4-12.9-4.8-11.4-12.2C25.8 54.2 48.8 19 50 19z"/>
+          </svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="apiled">
+        <div class="wide">
+          <h3 class="eyebrow">Interactive</h3>
+          <h2>How systems connect</h2>
+          <p class="sub">Compare two connectivity models. Structure stays the same; only the wiring changes.</p>
+          <div class="etl-box">
+            <div class="etl-tabs">
+              <button class="is-active" data-mode="ptp">
+                <h3>Direct</h3>
+                <p>One custom link per pair</p>
+                <div class="flow">Consumer → Glue → System</div>
+              </button>
+              <button data-mode="led">
+                <h3>Layered</h3>
+                <p>Shared contracts, reused below</p>
+                <div class="flow">Experience → Process → System</div>
+              </button>
+            </div>
+
+            <div class="arch" id="arch" data-mode="ptp">
+              <div class="arch-row">
+                <span class="arch-label">Consumers</span>
+                <div class="arch-nodes">
+                  <span>Mobile</span>
+                  <span>Portal</span>
+                  <span>Partner</span>
+                </div>
+              </div>
+              <div class="arch-row arch-mid" data-show="ptp">
+                <span class="arch-label">Glue</span>
+                <div class="arch-nodes mesh">
+                  <span>Map A</span>
+                  <span>Map B</span>
+                  <span>Map C</span>
+                </div>
+              </div>
+              <div class="arch-row arch-mid" data-show="led">
+                <span class="arch-label">Experience</span>
+                <div class="arch-nodes">
+                  <span>Channel APIs</span>
+                </div>
+              </div>
+              <div class="arch-row arch-mid" data-show="led">
+                <span class="arch-label">Process</span>
+                <div class="arch-nodes">
+                  <span>Orchestration</span>
+                </div>
+              </div>
+              <div class="arch-row arch-mid" data-show="led">
+                <span class="arch-label">System</span>
+                <div class="arch-nodes">
+                  <span>Canonical APIs</span>
+                </div>
+              </div>
+              <div class="arch-row">
+                <span class="arch-label">Records</span>
+                <div class="arch-nodes">
+                  <span>CRM</span>
+                  <span>ERP</span>
+                  <span>Commerce</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare" id="compare">
+              <div class="compare-head">
+                <span>Dimension</span>
+                <span>Direct</span>
+                <span>Layered</span>
+              </div>
+              <div class="compare-row">
+                <span>Coupling</span>
+                <span data-col="ptp">Tight — consumers talk to systems</span>
+                <span data-col="led">Loose — consumers talk to contracts</span>
+              </div>
+              <div class="compare-row">
+                <span>Reuse</span>
+                <span data-col="ptp">Low — each path is custom</span>
+                <span data-col="led">High — layers are shared</span>
+              </div>
+              <div class="compare-row">
+                <span>Change</span>
+                <span data-col="ptp">Fans out across every link</span>
+                <span data-col="led">Stays in one layer</span>
+              </div>
+              <div class="compare-row">
+                <span>Fit</span>
+                <span data-col="ptp">Few systems, short-lived links</span>
+                <span data-col="led">Many consumers, long-lived platforms</span>
+              </div>
+            </div>
+
+            <p class="key-diff" id="mode-note">
+              <strong>In this model:</strong>
+              Every new consumer needs its own mapping, errors, and SLAs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#d97757">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="philosophy">
+        <div class="wide">
+          <h3 class="eyebrow">Principles</h3>
+          <h2>How I treat integrations</h2>
+          <div class="philo-grid">
+            <article>
+              <h3>Stability over heroics</h3>
+              <p>Success is quiet production. Monitoring, RCA, and SLAs matter as much as the first deploy.</p>
+            </article>
+            <article>
+              <h3>APIs as product</h3>
+              <p>Contracts, fragments, tests, and docs are part of the build — not a cleanup pass after UAT.</p>
+            </article>
+            <article>
+              <h3>Reuse through layers</h3>
+              <p>Experience, Process, and System APIs keep channels from coupling to core systems.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#4285f4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="reading">
+        <div class="wide">
+          <h3 class="eyebrow">Credentials</h3>
+          <h2>What sits behind the work</h2>
+          <div class="philo-grid">
+            <article>
+              <h3>MuleSoft Certified Developer — Level 1</h3>
+              <p class="meta">MuleSoft · June 2022</p>
+              <p>Anypoint development, flows, error handling, and API implementation standards I still apply in reviews.</p>
+            </article>
+            <article>
+              <h3>BS Information Technology</h3>
+              <p class="meta">Polytechnic University of the Philippines · 2014–2018</p>
+              <p>Foundation for the intern-to-engineer path at INDRA and everything after.</p>
+            </article>
+            <article>
+              <h3><span class="js-years"></span> years of experience</h3>
+              <p class="meta">2017 - Current</p>
+              <p>Years of experience integrating diverse applications across industries such as technology, retail, e-commerce, fintech, and banking.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="div-line"></span>
+        <div class="div-icon" style="--c:#0acf83">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        </div>
+        <span class="div-line"></span>
+      </div>
+
+      <section id="contact">
+        <div class="contact-wrap">
+          <h3 class="eyebrow">Contact</h3>
+          <div class="contact-grid">
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:maskarinoernestjohn@gmail.com">maskarinoernestjohn@gmail.com</a>
+            </div>
+            <div>
+              <h4>Social</h4>
+              <a class="contact-link" href="https://www.linkedin.com/in/ejmaskarino" target="_blank" rel="noopener">
+                LinkedIn
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </a>
+              <a class="contact-link" href="https://wa.me/639151373096?text=Hi%20Ernest%2C%20I%27d%20like%20to%20connect." target="_blank" rel="noopener noreferrer">
+                WhatsApp
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </a>
+            </div>
+            <div>
+              <h4>Location</h4>
+              <p>Philippines</p>
+              <a href="tel:+639151373096">+63 915 137 3096</a>
+            </div>
+          </div>
+          <footer>
+            <p>Designed and developed by <span>Ernest John Maskariño</span></p>
+            <p>© 2026</p>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <div class="chat-modal" id="chat-modal" hidden>
+      <div class="chat-panel">
+        <header>
+          <div>
+            <strong>Ask EJ</strong>
+            <p>Answers from my resume — no live model required.</p>
+          </div>
+          <button type="button" id="chat-close" aria-label="Close chat">✕</button>
+        </header>
+        <div class="chat-log" id="chat-log"></div>
+        <form id="chat-form">
+          <input id="chat-input" type="text" placeholder="e.g. What did you do at Metrobank?" autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

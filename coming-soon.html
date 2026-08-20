@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming soon | Ernest John Maskariño</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a2330'/><text x='50' y='64' text-anchor='middle' font-size='36' font-family='Inter' fill='%238eb6d9'>EJ</text></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <span>EJ</span>
+          <small>/ Maskariño</small>
+        </a>
+        <nav>
+          <a href="index.html#about" class="nav-flip"><span>ABOUT</span><span>ABOUT</span></a>
+          <a href="index.html#career" class="nav-flip"><span>CAREER</span><span>CAREER</span></a>
+          <a href="index.html#work" class="nav-flip"><span>WORK</span><span>WORK</span></a>
+          <a href="coming-soon.html?page=side-quest" class="nav-flip"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
+          <a href="coming-soon.html?page=investment" class="nav-flip"><span>INVESTMENT PORTFOLIO</span><span>INVESTMENT PORTFOLIO</span></a>
+          <a href="index.html#contact" class="nav-flip"><span>CONTACT</span><span>CONTACT</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="soon">
+      <p class="eyebrow" id="soon-kicker">In progress</p>
+      <h1 id="soon-title">Coming soon</h1>
+      <p class="lede" id="soon-copy">This page is not live yet. Check back after the next release.</p>
+      <a class="btn-resume" href="index.html">← Back home</a>
+    </main>
+
+    <script>
+      const pages = {
+        "side-quest": {
+          title: "Side quest",
+          copy: "Personal experiments, builds, and side projects will live here.",
+        },
+        investment: {
+          title: "Investment portfolio",
+          copy: "Holdings, notes, and how I think about allocating capital will live here.",
+        },
+      };
+      const key = new URLSearchParams(location.search).get("page");
+      const page = pages[key];
+      if (page) {
+        document.title = page.title + " | Coming soon";
+        document.getElementById("soon-kicker").textContent = page.title;
+        document.getElementById("soon-copy").textContent = page.copy;
+      }
+    </script>
+  </body>
+</html>
