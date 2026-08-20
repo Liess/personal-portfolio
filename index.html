@@ -35,6 +35,7 @@
         <a href="#career" class="nav-flip"><span>CAREER</span><span>CAREER</span></a>
         <a href="#work" class="nav-flip"><span>WORK</span><span>WORK</span></a>
         <a href="side-quest.html" class="nav-flip"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
+        <a href="blogs.html" class="nav-flip"><span>BLOG</span><span>BLOG</span></a>
         <a href="investment.html" class="nav-flip"><span>INVESTMENT PORTFOLIO</span><span>INVESTMENT PORTFOLIO</span></a>
         <a href="#contact" class="nav-flip"><span>CONTACT</span><span>CONTACT</span></a>
       </nav>
@@ -245,41 +246,6 @@
           <div class="metric fade-up">
             <div>MCD</div>
             <p>MuleSoft Certified Developer L1</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="divider">
-        <span class="div-line"></span>
-        <div class="div-icon" style="--c:#017cee">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg>
-        </div>
-        <span class="div-line"></span>
-      </div>
-
-      <section id="lifecycle">
-        <div class="wide">
-          <h3 class="eyebrow">End-to-End</h3>
-          <h2>The API-led stack</h2>
-          <p class="sub">Click a layer to explore.</p>
-          <div class="life-grid">
-            <div class="pyramid" id="pyramid">
-              <button data-layer="0" style="width:52%;margin-left:24%">API Manager / Governance</button>
-              <button data-layer="1" style="width:62%;margin-left:19%">Experience APIs</button>
-              <button data-layer="2" style="width:72%;margin-left:14%">Process APIs</button>
-              <button data-layer="3" style="width:82%;margin-left:9%">System APIs</button>
-              <button data-layer="4" style="width:91%;margin-left:4.5%">Runtime / CI/CD / Support</button>
-              <button class="is-active" data-layer="5" style="width:100%">Core systems &amp; channels</button>
-            </div>
-            <div class="layer-card" id="layer-card">
-              <div class="layer-icon">▣</div>
-              <h4 id="layer-title">Core systems &amp; channels</h4>
-              <p id="layer-copy">
-                Shopify, core banking, retail, and department systems that become
-                reusable APIs — Metrobank CDD, Shiseido commerce, Razer AMS, and
-                internal channels that consume them.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -561,7 +527,26 @@
         <div class="wide">
           <h3 class="eyebrow">Interactive</h3>
           <h2>How systems connect</h2>
-          <p class="sub">Compare two connectivity models. Structure stays the same; only the wiring changes.</p>
+          <p class="sub">Click a layer to see the stack. Then compare two ways of wiring the same landscape.</p>
+          <div class="life-grid" id="lifecycle">
+            <div class="pyramid" id="pyramid">
+              <button class="is-active" data-layer="0" style="width:52%;margin-left:24%">Consumers</button>
+              <button data-layer="1" style="width:62%;margin-left:19%">Contracts</button>
+              <button data-layer="2" style="width:72%;margin-left:14%">Orchestration</button>
+              <button data-layer="3" style="width:82%;margin-left:9%">Connectivity</button>
+              <button data-layer="4" style="width:91%;margin-left:4.5%">Operations</button>
+              <button data-layer="5" style="width:100%">Systems of record</button>
+            </div>
+            <div class="layer-card" id="layer-card">
+              <div class="layer-icon">▣</div>
+              <h4 id="layer-title">Consumers</h4>
+              <p id="layer-copy">
+                Apps, portals, partners, and internal teams. They need a result — an order, a balance, a shipment — without knowing how many backends sit underneath.
+              </p>
+            </div>
+          </div>
+          <h3 class="apiled-kicker">Two ways to wire it</h3>
+          <p class="sub">Structure stays the same; only the wiring changes.</p>
           <div class="etl-box">
             <div class="etl-tabs">
               <button class="is-active" data-mode="ptp">
@@ -572,7 +557,7 @@
               <button data-mode="led">
                 <h3>Layered</h3>
                 <p>Shared contracts, reused below</p>
-                <div class="flow">Experience → Process → System</div>
+                <div class="flow">Contracts → Orchestration → Connectivity</div>
               </button>
             </div>
 
@@ -594,21 +579,21 @@
                 </div>
               </div>
               <div class="arch-row arch-mid" data-show="led">
-                <span class="arch-label">Experience</span>
+                <span class="arch-label">Contracts</span>
                 <div class="arch-nodes">
                   <span>Channel APIs</span>
                 </div>
               </div>
               <div class="arch-row arch-mid" data-show="led">
-                <span class="arch-label">Process</span>
+                <span class="arch-label">Orchestration</span>
                 <div class="arch-nodes">
-                  <span>Orchestration</span>
+                  <span>Business flow</span>
                 </div>
               </div>
               <div class="arch-row arch-mid" data-show="led">
-                <span class="arch-label">System</span>
+                <span class="arch-label">Connectivity</span>
                 <div class="arch-nodes">
-                  <span>Canonical APIs</span>
+                  <span>System access</span>
                 </div>
               </div>
               <div class="arch-row">

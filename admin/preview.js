@@ -3,6 +3,18 @@
   var createClass = window.createClass;
   var CMS = window.CMS;
 
+  function formatPostedDate(value) {
+    var raw = String(value == null ? "" : value).trim();
+    if (!raw) return "";
+    var date = new Date(/T/.test(raw) ? raw : raw.slice(0, 10) + "T12:00:00");
+    if (isNaN(date.getTime())) return raw;
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
   function text(entry, key) {
     var value = entry.getIn(["data", key]);
     if (value == null) return "";
@@ -120,6 +132,7 @@
       var location = text(entry, "location");
       var country = text(entry, "country");
       var place = location ? [location, country].filter(Boolean).join(" · ") : "";
+      var posted = formatPostedDate(text(entry, "date") || text(entry, "travel_date") || text(entry, "posted_date"));
       var coverValue = entry.getIn(["data", "cover"]);
       var coverFocus = parseFocus(entry.getIn(["data", "cover_focus"]));
       var photos = galleryValues(entry);
@@ -147,6 +160,7 @@
               h("h1", { className: "display" }, title),
               excerpt ? h("p", { className: "lead quest-lead" }, excerpt) : null,
               place ? h("p", { className: "blog-place" }, place) : null,
+              posted ? h("p", { className: "blog-posted" }, posted) : null,
               h("div", { className: "quest-jump" },
                 h("a", { href: "#" }, "← Blogs")
               )

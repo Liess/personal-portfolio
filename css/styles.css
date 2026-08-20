@@ -814,8 +814,19 @@ section.metrics {
 
 .pyramid {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 8px;
+}
+
+.apiled-kicker {
+  margin: 56px 0 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+#apiled .life-grid {
+  margin-bottom: 8px;
 }
 
 .pyramid button {
@@ -1537,11 +1548,13 @@ time {
   .reveal,
   .divider.reveal-icon .div-icon,
   .world-pulse,
-  .jm-pin-pulse {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .jm-pin-pulse,
+  main.quest > section :is(.eyebrow, h1, h2, h3, .sub, .lead, .quest-jump a, .me-photos, .me-copy, .me-trivia, .me-hobbies article, .quest-social, .world-wrap, .place-carousel, .desk-stage, .quest-space article, .quest-player, .quest-episodes li, .quest-blogs > *, .blog-more, .btn-resume) {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
   }
 }
 
@@ -2740,11 +2753,10 @@ a.quest-blog-link:hover {
   inset: 0;
   z-index: 95;
   background: rgba(8, 12, 18, 0.92);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 48px 16px 24px;
+  justify-content: center;
+  padding: 56px 64px 24px;
 }
 
 .lightbox[hidden] {
@@ -2753,7 +2765,12 @@ a.quest-blog-link:hover {
 
 .lightbox figure {
   margin: 0;
-  max-height: 80vh;
+  max-width: min(96vw, 1400px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .lightbox img {
@@ -2781,12 +2798,25 @@ a.quest-blog-link:hover {
   width: 44px;
   height: 44px;
   font: inherit;
+  position: absolute;
+  z-index: 2;
 }
 
 .lightbox-close {
-  position: absolute;
   top: 16px;
   right: 16px;
+}
+
+.lightbox-nav.prev {
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-nav.next {
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .lightbox-nav[hidden] {
@@ -2795,7 +2825,7 @@ a.quest-blog-link:hover {
 
 .lightbox.is-photo img {
   max-width: min(96vw, 1400px);
-  max-height: 90vh;
+  max-height: 86vh;
   object-fit: contain;
 }
 
@@ -3134,8 +3164,15 @@ a.quest-blog-link:hover {
   font-size: 0.92rem;
 }
 
-.blog-place[hidden] {
+.blog-place[hidden],
+.blog-posted[hidden] {
   display: none;
+}
+
+.blog-posted {
+  margin-top: 6px;
+  color: var(--dim);
+  font-size: 0.86rem;
 }
 
 .blog-page .display {
@@ -3328,6 +3365,321 @@ a.quest-blog-link:hover {
 .quest-close .btn-resume {
   margin-top: 28px;
 }
+
+@keyframes questHeroText {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes questChip {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes questFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-56px) rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes questFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes questLift {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes questPopTilt {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.88) rotate(4deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes questGlobe {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes questIris {
+  from {
+    opacity: 0;
+    clip-path: circle(6% at 50% 58%);
+  }
+  to {
+    opacity: 1;
+    clip-path: circle(85% at 50% 50%);
+  }
+}
+
+@keyframes questTape {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) skewX(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes questSheet {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes questSoft {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+main.quest > section:not(.is-in) .eyebrow,
+main.quest > section:not(.is-in) h1,
+main.quest > section:not(.is-in) h2,
+main.quest > section:not(.is-in) .sub,
+main.quest > section:not(.is-in) .quest-lead,
+main.quest > section:not(.is-in) .quest-jump a,
+main.quest > section:not(.is-in) .me-photos,
+main.quest > section:not(.is-in) .me-copy,
+main.quest > section:not(.is-in) .me-trivia,
+main.quest > section:not(.is-in) .me-hobbies article,
+main.quest > section:not(.is-in) .quest-social,
+main.quest > section:not(.is-in) .world-wrap,
+main.quest > section:not(.is-in) .place-carousel,
+main.quest > section:not(.is-in) .desk-stage,
+main.quest > section:not(.is-in) .quest-space article,
+main.quest > section:not(.is-in) .quest-player,
+main.quest > section:not(.is-in) .quest-episodes li,
+main.quest > section:not(.is-in) .quest-blogs > *,
+main.quest > section:not(.is-in) .blog-more,
+main.quest > section.quest-close:not(.is-in) .narrow > * {
+  opacity: 0;
+}
+
+.quest-hero.is-in .eyebrow,
+.quest-hero.is-in .display,
+.quest-hero.is-in .quest-lead {
+  animation: questHeroText 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.quest-hero.is-in .display {
+  animation-delay: 80ms;
+}
+
+.quest-hero.is-in .quest-lead {
+  animation-delay: 160ms;
+}
+
+.quest-hero.is-in .quest-jump a {
+  animation: questChip 0.55s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.quest-hero.is-in .quest-jump a:nth-child(1) { animation-delay: 280ms; }
+.quest-hero.is-in .quest-jump a:nth-child(2) { animation-delay: 340ms; }
+.quest-hero.is-in .quest-jump a:nth-child(3) { animation-delay: 400ms; }
+.quest-hero.is-in .quest-jump a:nth-child(4) { animation-delay: 460ms; }
+.quest-hero.is-in .quest-jump a:nth-child(5) { animation-delay: 520ms; }
+.quest-hero.is-in .quest-jump a:nth-child(6) { animation-delay: 580ms; }
+
+#me.is-in .eyebrow,
+#me.is-in h2,
+#me.is-in .sub {
+  animation: questLift 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#me.is-in h2 { animation-delay: 70ms; }
+#me.is-in .sub { animation-delay: 120ms; }
+
+#me.is-in .me-photos {
+  animation: questFromLeft 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 120ms;
+}
+
+#me.is-in .me-copy {
+  animation: questFromRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 180ms;
+}
+
+#me.is-in .me-trivia {
+  animation: questLift 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 220ms;
+}
+
+#me.is-in .me-hobbies article {
+  animation: questPopTilt 0.7s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+#me.is-in .me-hobbies article:nth-child(1) { animation-delay: 280ms; }
+#me.is-in .me-hobbies article:nth-child(2) { animation-delay: 360ms; }
+#me.is-in .me-hobbies article:nth-child(3) { animation-delay: 440ms; }
+
+#socials.is-in .eyebrow,
+#socials.is-in h2,
+#socials.is-in .sub {
+  animation: questLift 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#socials.is-in h2 { animation-delay: 60ms; }
+#socials.is-in .sub { animation-delay: 110ms; }
+
+#socials.is-in .quest-social {
+  animation: questPopTilt 0.75s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+}
+
+#socials.is-in .quest-social:nth-child(1) { animation-delay: 140ms; }
+#socials.is-in .quest-social:nth-child(2) { animation-delay: 220ms; }
+#socials.is-in .quest-social:nth-child(3) { animation-delay: 300ms; }
+#socials.is-in .quest-social:nth-child(4) { animation-delay: 380ms; }
+
+#travel.is-in .eyebrow,
+#travel.is-in h2,
+#travel.is-in .sub {
+  animation: questLift 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#travel.is-in h2 { animation-delay: 60ms; }
+#travel.is-in .sub { animation-delay: 110ms; }
+
+#travel.is-in .world-wrap {
+  animation: questGlobe 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 80ms;
+}
+
+#travel.is-in .place-carousel {
+  animation: questLift 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 280ms;
+}
+
+#space.is-in .eyebrow,
+#space.is-in h2,
+#space.is-in .sub {
+  animation: questLift 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#space.is-in h2 { animation-delay: 60ms; }
+#space.is-in .sub { animation-delay: 110ms; }
+
+#space.is-in .desk-stage {
+  animation: questIris 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 100ms;
+}
+
+#space.is-in .quest-space article {
+  animation: questFromRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#space.is-in .quest-space article:nth-child(1) { animation-delay: 220ms; }
+#space.is-in .quest-space article:nth-child(2) { animation-delay: 320ms; }
+
+#vlog.is-in .eyebrow,
+#vlog.is-in h2,
+#vlog.is-in .sub {
+  animation: questLift 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#vlog.is-in h2 { animation-delay: 60ms; }
+#vlog.is-in .sub { animation-delay: 110ms; }
+
+#vlog.is-in .quest-player {
+  animation: questTape 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 120ms;
+}
+
+#vlog.is-in .quest-episodes li {
+  animation: questFromRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#vlog.is-in .quest-episodes li:nth-child(1) { animation-delay: 220ms; }
+#vlog.is-in .quest-episodes li:nth-child(2) { animation-delay: 300ms; }
+#vlog.is-in .quest-episodes li:nth-child(3) { animation-delay: 380ms; }
+
+#blogs.is-in .eyebrow,
+#blogs.is-in h2,
+#blogs.is-in .sub {
+  animation: questLift 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#blogs.is-in h2 { animation-delay: 60ms; }
+#blogs.is-in .sub { animation-delay: 110ms; }
+
+#blogs.is-in .quest-blogs > * {
+  animation: questSheet 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--q, 160ms);
+}
+
+#blogs.is-in .blog-more {
+  animation: questChip 0.6s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  animation-delay: 420ms;
+}
+
+.quest-close.is-in .eyebrow,
+.quest-close.is-in .lead,
+.quest-close.is-in .btn-resume {
+  animation: questSoft 0.9s ease both;
+}
+
+.quest-close.is-in .lead { animation-delay: 90ms; }
+.quest-close.is-in .btn-resume { animation-delay: 180ms; }
 
 .blog-more {
   margin-top: 28px;

@@ -40,7 +40,7 @@ collections:
     summary: "{{title}}"
     identifier_field: slug
     sortable_fields:
-      - { field: travel_date, label: Newest to oldest, default_sort: desc }
+      - { field: date, label: Posted date, default_sort: desc }
       - { field: title, label: Title }
     view_groups:
       - label: Country
@@ -48,7 +48,7 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Slug, name: slug, widget: string, hint: "URL key, e.g. boracay-white-beach" }
-      - { label: Travel Date, name: travel_date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Posted date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, default: "{{now}}" }
       - { label: Location, name: location, widget: string, hint: "City or spot" }
       - { label: Country, name: country, widget: string }
       - { label: Cover Image, name: cover, widget: image, required: false }

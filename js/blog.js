@@ -6,6 +6,18 @@ function escapeBlog(value) {
     .replace(/"/g, "&quot;");
 }
 
+function formatPostedDate(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const date = new Date(/T/.test(raw) ? raw : `${raw.slice(0, 10)}T12:00:00`);
+  if (Number.isNaN(date.getTime())) return raw;
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 function parseFrontMatter(raw) {
   const text = String(raw).replace(/^\uFEFF/, "");
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -159,7 +171,7 @@ function loadBlogPosts() {
             return {
               slug: parsed.data.slug || fallbackSlug,
               title: parsed.data.title || fallbackSlug,
-              travel_date: parsed.data.travel_date || parsed.data.date || "",
+              travel_date: parsed.data.date || parsed.data.travel_date || parsed.data.posted_date || "",
               location: parsed.data.location || "",
               country: parsed.data.country || "",
               cover: parsed.data.cover || "",
@@ -247,6 +259,7 @@ function renderBlogCards(root, posts, mode) {
         <span class="quest-status">${escapeBlog(place || (published ? "Published" : "Draft"))}</span>
       </div>
     `;
+    node.style.setProperty("--q", `${index * 90}ms`);
     root.appendChild(node);
   });
 }
@@ -437,6 +450,17 @@ function initBlogPost() {
         } else {
           placeEl.textContent = "";
           placeEl.hidden = true;
+        }
+      }
+      const postedEl = document.getElementById("blog-posted");
+      const posted = formatPostedDate(post.travel_date);
+      if (postedEl) {
+        if (posted) {
+          postedEl.textContent = posted;
+          postedEl.hidden = false;
+        } else {
+          postedEl.textContent = "";
+          postedEl.hidden = true;
         }
       }
       const cover = document.getElementById("blog-cover");

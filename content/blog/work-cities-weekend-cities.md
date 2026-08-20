@@ -1,7 +1,7 @@
 ---
 title: Work cities vs. weekend cities
 slug: work-cities-weekend-cities
-travel_date: 2026-08-08
+date: 2026-08-08
 location: ""
 country: ""
 cover: ""

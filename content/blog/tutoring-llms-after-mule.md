@@ -1,7 +1,7 @@
 ---
 title: Notes from tutoring LLMs after a day of Mule flows
 slug: tutoring-llms-after-mule
-travel_date: 2026-08-15
+date: 2026-08-15
 location: Grok
 country: Philippines
 cover: /assets/blog/086fde10-7e83-11f0-9e05-3dbec5559644.jpg

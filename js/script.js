@@ -1,27 +1,27 @@
 const layers = [
   {
-    title: "API Manager / Governance",
-    copy: "Policies, SLAs, and access around the APIs — the layer that keeps production support from becoming tribal knowledge.",
+    title: "Consumers",
+    copy: "Apps, portals, partners, and internal teams. They need a result — an order, a balance, a shipment — without knowing how many backends sit underneath.",
   },
   {
-    title: "Experience APIs",
-    copy: "Channel-shaped contracts. Mobile, portal, or partner consumers get a purpose-built API without talking to core systems directly.",
+    title: "Contracts",
+    copy: "Stable APIs and events shaped for those consumers. A channel talks to a contract, not to a database schema or another team's private interface.",
   },
   {
-    title: "Process APIs",
-    copy: "Orchestration: Scatter-Gather, JMS, caching, and the business composition that sits between experience and systems of record.",
+    title: "Orchestration",
+    copy: "When a request spans several systems, this layer sequences the work, applies the business rules, and keeps error handling in one place.",
   },
   {
-    title: "System APIs",
-    copy: "Canonical access to Shopify, core banking, retail, and department platforms — HTTP standards, fragments, and libraries in Design Center.",
+    title: "Connectivity",
+    copy: "One reusable way to reach each system of record: auth, mapping, and retries. New channels reuse this instead of growing another custom link.",
   },
   {
-    title: "Runtime / CI/CD / Support",
-    copy: "Runtime Manager deploys, pipelines ship faster, MUnit guards regressions, and incident RCA keeps Japan and APAC production stable.",
+    title: "Operations",
+    copy: "Pipelines, environments, tests, monitoring, and incident response. Delivery does not stop at go-live — production has to stay quiet.",
   },
   {
-    title: "Core systems & channels",
-    copy: "Shopify, core banking, retail, and department systems that become reusable APIs — Metrobank CDD, Shiseido commerce, Razer AMS, and the channels that consume them.",
+    title: "Systems of record",
+    copy: "Commerce, CRM, ERP, core banking, and the rest. They remain the sources of truth. Integrations sit in front of them so the landscape can change without rewriting every consumer.",
   },
 ];
 
@@ -322,7 +322,7 @@ function initApiLed() {
   if (!arch || !compare || !note) return;
   const notes = {
     ptp: "<strong>In this model:</strong> Every new consumer needs its own mapping, errors, and SLAs.",
-    led: "<strong>In this model:</strong> A new consumer reuses process and system layers. Change stays in one place.",
+    led: "<strong>In this model:</strong> A new consumer reuses orchestration and connectivity. Change stays in one layer.",
   };
 
   function setMode(mode) {
@@ -778,8 +778,37 @@ function initDeskStage() {
   setMuteUi();
 }
 
+function initQuestReveal(reduce) {
+  const sections = [...document.querySelectorAll("main.quest > section")];
+  if (!sections.length) return;
+  if (reduce) {
+    sections.forEach((el) => el.classList.add("is-in"));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        io.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -12% 0px" }
+  );
+  sections.forEach((el) => io.observe(el));
+  const first = sections[0];
+  if (first && first.getBoundingClientRect().bottom > 80 && first.getBoundingClientRect().top < window.innerHeight * 0.9) {
+    first.classList.add("is-in");
+    io.unobserve(first);
+  }
+}
+
 function initScrollReveal() {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (document.querySelector("main.quest")) {
+    initQuestReveal(reduce);
+    return;
+  }
   const blocks = [
     ...document.querySelectorAll(".chat-bar-wrap"),
     ...document.querySelectorAll(
