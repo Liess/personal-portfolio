@@ -28,8 +28,8 @@
     return window.CMSMedia.hasMedia(value);
   }
 
-  function assetUrl(getAsset, value) {
-    return window.CMSMedia.resolve(getAsset, value);
+  function assetUrl(getAsset, value, entry) {
+    return window.CMSMedia.resolve(getAsset, value, null, entry);
   }
 
   function isEditorPhoto(img) {
@@ -53,11 +53,13 @@
     }
   }
 
-  function liveSrc(getAsset, path, fallback) {
-    var url = assetUrl(getAsset, path);
+  function liveSrc(getAsset, path, fallback, entry) {
+    var url = assetUrl(getAsset, path, entry);
     if (url && (url.indexOf("blob:") === 0 || url.indexOf("data:") === 0)) return url;
-    if (fallback) return fallback;
-    return url;
+    if (fallback && (String(fallback).indexOf("blob:") === 0 || String(fallback).indexOf("data:") === 0)) {
+      return fallback;
+    }
+    return url || fallback || "";
   }
 
   function parseFocus(value) {
@@ -111,7 +113,7 @@
       var photos = galleryValues(entry);
       var livePhotos = editorPhotos();
       var coverSrc = hasMedia(coverValue)
-        ? liveSrc(getAsset, coverValue, livePhotos[0])
+        ? liveSrc(getAsset, coverValue, livePhotos[0], entry)
         : "";
       var galleryLive = hasMedia(coverValue) ? livePhotos.slice(1) : livePhotos;
       var pageCount = Math.max(1, Math.ceil(photos.length / 5));
@@ -163,7 +165,7 @@
                         visible.map(function (photo, index) {
                           return h("img", {
                             key: String(photo.src) + index,
-                            src: liveSrc(getAsset, photo.src, galleryLive[index]),
+                            src: liveSrc(getAsset, photo.src, galleryLive[index], entry),
                             alt: "",
                             style: { objectPosition: photo.focus },
                           });
@@ -186,7 +188,7 @@
   });
 
   CMS.registerPreviewStyle("/css/styles.css");
-  CMS.registerPreviewStyle("/admin/preview.css?v=draft-media");
+  CMS.registerPreviewStyle("/admin/preview.css?v=draft-files");
   CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
   CMS.registerPreviewTemplate("blog", BlogPreview);
 })();

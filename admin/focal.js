@@ -100,7 +100,7 @@
     },
     syncPhoto: function () {
       var path = fieldPath(this.props) || neighborPath(this._root);
-      var src = media.resolve(this.props.getAsset, path, this.props.field);
+      var src = media.resolve(this.props.getAsset, path, this.props.field, this.props.entry);
       if (src && src !== this.state.src) this.setState({ src: src });
     },
     setPair: function (x, y) {
