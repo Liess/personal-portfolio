@@ -207,8 +207,45 @@ function initCursor() {
 
 function initHeader() {
   const header = document.getElementById("header");
+  if (!header) return;
   window.addEventListener("scroll", () => {
     header.classList.toggle("scrolled", window.scrollY > 20);
+  });
+}
+
+function initNav() {
+  const header = document.getElementById("header");
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("site-nav");
+  if (!header || !toggle || !nav) return;
+
+  const close = () => {
+    header.classList.remove("nav-open");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-lock");
+  };
+
+  const open = () => {
+    header.classList.add("nav-open");
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("nav-lock");
+  };
+
+  toggle.addEventListener("click", () => {
+    if (header.classList.contains("nav-open")) close();
+    else open();
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", close);
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 1024px)").matches) close();
   });
 }
 
@@ -224,6 +261,7 @@ function initAccordion() {
 function initLayers() {
   const title = document.getElementById("layer-title");
   const copy = document.getElementById("layer-copy");
+  if (!title || !copy) return;
   document.querySelectorAll("#pyramid button").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelectorAll("#pyramid button").forEach((b) => b.classList.remove("is-active"));
@@ -239,6 +277,7 @@ function initWork() {
   const content = document.getElementById("work-content");
   const num = document.getElementById("work-num");
   const dots = document.getElementById("work-dots");
+  if (!content || !num || !dots) return;
   let i = 0;
 
   projects.forEach((_, idx) => {
@@ -280,6 +319,7 @@ function initApiLed() {
   const arch = document.getElementById("arch");
   const compare = document.getElementById("compare");
   const note = document.getElementById("mode-note");
+  if (!arch || !compare || !note) return;
   const notes = {
     ptp: "<strong>In this model:</strong> Every new consumer needs its own mapping, errors, and SLAs.",
     led: "<strong>In this model:</strong> A new consumer reuses process and system layers. Change stays in one place.",
@@ -324,6 +364,8 @@ function initChat() {
   const log = document.getElementById("chat-log");
   const form = document.getElementById("chat-form");
   const input = document.getElementById("chat-input");
+  const openBtn = document.getElementById("chat-open");
+  if (!modal || !log || !form || !input || !openBtn) return;
 
   function add(text, who) {
     const el = document.createElement("div");
@@ -353,7 +395,7 @@ function initChat() {
     add(answerQuestion(q), "bot");
   }
 
-  document.getElementById("chat-open").addEventListener("click", () => {
+  openBtn.addEventListener("click", () => {
     modal.hidden = false;
     greet();
     input.focus();
@@ -375,6 +417,7 @@ function initChat() {
 
 initCursor();
 initHeader();
+initNav();
 initAccordion();
 initLayers();
 initWork();

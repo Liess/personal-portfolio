@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Coming soon | Ernest John Maskariño</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,12 +20,15 @@
           <span>EJ</span>
           <small>/ Maskariño</small>
         </a>
-        <nav>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="site-nav">
           <a href="index.html#about" class="nav-flip"><span>ABOUT</span><span>ABOUT</span></a>
           <a href="index.html#career" class="nav-flip"><span>CAREER</span><span>CAREER</span></a>
           <a href="index.html#work" class="nav-flip"><span>WORK</span><span>WORK</span></a>
-          <a href="coming-soon.html?page=side-quest" class="nav-flip"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
-          <a href="coming-soon.html?page=investment" class="nav-flip"><span>INVESTMENT PORTFOLIO</span><span>INVESTMENT PORTFOLIO</span></a>
+          <a href="side-quest.html" class="nav-flip"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
+          <a href="investment.html" class="nav-flip"><span>INVESTMENT PORTFOLIO</span><span>INVESTMENT PORTFOLIO</span></a>
           <a href="index.html#contact" class="nav-flip"><span>CONTACT</span><span>CONTACT</span></a>
         </nav>
       </div>
@@ -57,5 +60,6 @@
         document.getElementById("soon-copy").textContent = page.copy;
       }
     </script>
+    <script src="script.js"></script>
   </body>
 </html>
