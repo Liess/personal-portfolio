@@ -6,7 +6,7 @@ node_modules/
 .gitattributes
 wrangler.jsonc
 worker.js
-*.md
+README.md
 .env
 .env.*
 Thumbs.db

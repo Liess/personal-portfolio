@@ -23,30 +23,31 @@ function cmsConfig(url) {
   auth_endpoint: oauth
 site_url: ${origin}
 display_url: ${origin}/side-quest.html#blogs
-logo_url: ${origin}/
 media_folder: assets/blog
 public_folder: /assets/blog
 publish_mode: simple
 collections:
   - name: blog
     label: Blog
-    files:
-      - name: posts
-        label: Posts
-        file: data/blog.json
-        fields:
-          - label: Posts
-            name: posts
-            widget: list
-            summary: "{{fields.title}} — {{fields.status}}"
-            fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Slug, name: slug, widget: string, hint: "URL key, e.g. consultant-workstation" }
-              - { label: Tag, name: tag, widget: string }
-              - { label: Status, name: status, widget: select, options: ["Published", "Writing", "Queued"], default: "Writing" }
-              - { label: Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
-              - { label: Excerpt, name: excerpt, widget: text }
-              - { label: Body, name: body, widget: markdown }
+    label_singular: Post
+    folder: content/blog
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    preview_path: blog.html?slug={{slug}}
+    sortable_fields: ["date", "title", "status"]
+    view_groups:
+      - label: Status
+        field: status
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Tag, name: tag, widget: string, hint: "Desk, Travel, Craft, …" }
+      - { label: Status, name: status, widget: select, options: ["Published", "Writing", "Queued"], default: "Writing" }
+      - { label: Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Excerpt, name: excerpt, widget: text }
+      - { label: Body, name: body, widget: markdown }
 `;
   return new Response(yaml, {
     headers: {

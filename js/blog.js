@@ -6,20 +6,63 @@ function escapeBlog(value) {
     .replace(/"/g, "&quot;");
 }
 
-function loadBlogData() {
-  return fetch("data/blog.json", { cache: "no-store" }).then((res) => {
-    if (!res.ok) throw new Error("blog");
-    return res.json();
+function parseFrontMatter(raw) {
+  const text = String(raw).replace(/^\uFEFF/, "");
+  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  if (!match) return { data: {}, body: text.trim() };
+  const data = {};
+  match[1].split(/\r?\n/).forEach((line) => {
+    const idx = line.indexOf(":");
+    if (idx === -1) return;
+    const key = line.slice(0, idx).trim();
+    let value = line.slice(idx + 1).trim();
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1);
+    }
+    data[key] = value;
   });
+  return { data, body: match[2].trim() };
+}
+
+function loadBlogPosts() {
+  return fetch("https://api.github.com/repos/Liess/personal-portfolio/contents/content/blog", {
+    headers: { Accept: "application/vnd.github+json" },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("index");
+      return res.json();
+    })
+    .then((files) => {
+      const notes = (Array.isArray(files) ? files : []).filter((file) => file.type === "file" && /\.md$/i.test(file.name));
+      return Promise.all(
+        notes.map((file) =>
+          fetch(file.download_url).then((res) => res.text()).then((raw) => {
+            const parsed = parseFrontMatter(raw);
+            const slug = file.name.replace(/\.md$/i, "");
+            return {
+              slug,
+              title: parsed.data.title || slug,
+              tag: parsed.data.tag || "Note",
+              status: parsed.data.status || "Queued",
+              date: parsed.data.date || "",
+              excerpt: parsed.data.excerpt || "",
+              body: parsed.body || "",
+            };
+          })
+        )
+      );
+    })
+    .then((posts) =>
+      posts.sort((a, b) => String(b.date).localeCompare(String(a.date)))
+    );
 }
 
 function initBlogList() {
   const root = document.querySelector(".quest-blogs");
   if (!root) return;
 
-  loadBlogData()
-    .then((data) => {
-      const posts = Array.isArray(data.posts) ? data.posts : [];
+  loadBlogPosts()
+    .then((posts) => {
       if (!posts.length) return;
       root.replaceChildren();
       posts.forEach((post) => {
@@ -48,9 +91,8 @@ function initBlogPost() {
   if (!titleEl || !bodyEl) return;
 
   const slug = new URLSearchParams(window.location.search).get("slug") || "";
-  loadBlogData()
-    .then((data) => {
-      const posts = Array.isArray(data.posts) ? data.posts : [];
+  loadBlogPosts()
+    .then((posts) => {
       const post = posts.find((item) => item.slug === slug && item.status === "Published");
       if (!post) {
         titleEl.textContent = "Not published yet";
