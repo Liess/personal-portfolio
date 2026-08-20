@@ -52,6 +52,7 @@ collections:
       - { label: Location, name: location, widget: string, hint: "City or spot" }
       - { label: Country, name: country, widget: string }
       - { label: Cover Image, name: cover, widget: image, required: false }
+      - { label: Cover frame, name: cover_focus, widget: focalPoint, required: false, hint: "Click the photo to choose the visible area.", media_field: cover }
       - label: Gallery
         name: gallery
         widget: list
@@ -59,8 +60,10 @@ collections:
         label_singular: Photo
         collapsed: true
         summary: "{{fields.image}}"
-        hint: "Add photos. A carousel appears on the post only if there are more than 5."
-        field: { name: image, label: Photo, widget: image }
+        hint: "Add photos, then click Visible area to crop. A carousel appears on the post only if there are more than 5."
+        fields:
+          - { name: image, label: Photo, widget: image }
+          - { name: focus, label: Visible area, widget: focalPoint, required: false }
       - { label: Excerpt, name: excerpt, widget: text }
       - { label: Card title, name: card_title, widget: string, required: false, hint: "One word on the listing card and the post eyebrow, e.g. Travel." }
       - label: Tags

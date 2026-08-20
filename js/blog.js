@@ -32,9 +32,23 @@ function parseFrontMatter(raw) {
       if (i < lines.length && /^\s*-/.test(lines[i])) {
         const items = [];
         while (i < lines.length && /^\s*-/.test(lines[i])) {
-          const item = lines[i].replace(/^\s*-\s*/, "").trim();
-          const nested = item.match(/^image:\s*(.*)$/) || item.match(/^tag:\s*(.*)$/);
-          const value = nested ? unquote(nested[1]) : unquote(item);
+          const indent = (lines[i].match(/^(\s*)/) || [""])[1].length;
+          const rest = lines[i].replace(/^\s*-\s*/, "").trim();
+          const objKey = rest.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
+          if (objKey) {
+            const obj = {};
+            obj[objKey[1]] = unquote(objKey[2]);
+            i += 1;
+            while (i < lines.length && lines[i].trim() && !/^\s*-/.test(lines[i]) && (lines[i].match(/^(\s*)/) || [""])[1].length > indent) {
+              const nested = lines[i].match(/^\s+([A-Za-z0-9_]+):\s*(.*)$/);
+              if (nested) obj[nested[1]] = unquote(nested[2]);
+              i += 1;
+            }
+            items.push(obj);
+            continue;
+          }
+          const nested = rest.match(/^image:\s*(.*)$/) || rest.match(/^tag:\s*(.*)$/);
+          const value = nested ? unquote(nested[1]) : unquote(rest);
           if (value) items.push(value);
           i += 1;
         }
@@ -81,6 +95,43 @@ function unquote(value) {
   return text;
 }
 
+function clampFocus(value) {
+  const number = Number(value);
+  if (Number.isNaN(number)) return 50;
+  return Math.min(100, Math.max(0, number));
+}
+
+function parseFocus(value, extra) {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    return { x: clampFocus(value.x), y: clampFocus(value.y) };
+  }
+  if (typeof value === "string" && /\d/.test(value)) {
+    const parts = value.trim().split(/[\s,]+/);
+    return { x: clampFocus(parts[0]), y: clampFocus(parts[1]) };
+  }
+  if (extra) {
+    return { x: clampFocus(extra.x), y: clampFocus(extra.y) };
+  }
+  return { x: 50, y: 50 };
+}
+
+function focusStyle(focus) {
+  const point = parseFocus(focus);
+  return `${point.x}% ${point.y}%`;
+}
+
+function normalizeGallery(raw) {
+  return (Array.isArray(raw) ? raw : [])
+    .map((item) => {
+      if (!item) return null;
+      if (typeof item === "string") return { src: item, focus: { x: 50, y: 50 } };
+      const src = item.image || item.src || "";
+      if (!src) return null;
+      return { src, focus: parseFocus(item.focus, item) };
+    })
+    .filter(Boolean);
+}
+
 function isPublished(post) {
   return post.published === true || post.published === "true";
 }
@@ -101,7 +152,7 @@ function loadBlogPosts() {
             const parsed = parseFrontMatter(raw);
             const fallbackSlug = file.name.replace(/\.md$/i, "");
             const tags = normalizeTags(parsed.data);
-            const gallery = Array.isArray(parsed.data.gallery) ? parsed.data.gallery : [];
+            const gallery = normalizeGallery(parsed.data.gallery);
             const card = parsed.data.card && typeof parsed.data.card === "object" && !Array.isArray(parsed.data.card)
               ? parsed.data.card
               : {};
@@ -112,6 +163,7 @@ function loadBlogPosts() {
               location: parsed.data.location || "",
               country: parsed.data.country || "",
               cover: parsed.data.cover || "",
+              cover_focus: parseFocus(parsed.data.cover_focus),
               gallery,
               excerpt: parsed.data.excerpt || "",
               card_title: parsed.data.card_title || parsed.data["card-title"] || card.label || "",
@@ -135,6 +187,10 @@ function normalizeTags(data) {
     if (value == null || value === "") return;
     if (Array.isArray(value)) {
       value.forEach(push);
+      return;
+    }
+    if (typeof value === "object") {
+      push(value.tag || value.name);
       return;
     }
     String(value)
@@ -180,7 +236,7 @@ function renderBlogCards(root, posts, mode) {
     const place = [post.location, post.country].filter(Boolean).join(", ");
     const kicker = post.card_title || "";
     const thumb = post.cover
-      ? `<img class="quest-blog-thumb" src="${escapeBlog(post.cover)}" alt="">`
+      ? `<img class="quest-blog-thumb" src="${escapeBlog(post.cover)}" alt="" style="object-position:${escapeBlog(focusStyle(post.cover_focus))}">`
       : "";
     node.innerHTML = `
       ${thumb}
@@ -210,7 +266,15 @@ function initBlogList() {
     });
 }
 
-function renderBlogGallery(srcs) {
+function addGalleryImage(page, photo) {
+  const img = document.createElement("img");
+  img.src = photo.src;
+  img.alt = "";
+  img.style.objectPosition = focusStyle(photo.focus);
+  page.appendChild(img);
+}
+
+function renderBlogGallery(photos) {
   const wrap = document.getElementById("blog-gallery-wrap");
   const track = document.getElementById("blog-gallery");
   const bar = document.getElementById("blog-gallery-bar");
@@ -219,7 +283,7 @@ function renderBlogGallery(srcs) {
   const next = document.getElementById("blog-gallery-next");
   if (!wrap || !track) return;
 
-  const photos = srcs.filter(Boolean);
+  const list = (photos || []).filter((photo) => photo && photo.src);
   track.replaceChildren();
   track.style.transform = "";
   wrap.classList.remove("is-carousel");
@@ -227,39 +291,29 @@ function renderBlogGallery(srcs) {
   if (prev) prev.onclick = null;
   if (next) next.onclick = null;
 
-  if (!photos.length) {
+  if (!list.length) {
     wrap.hidden = true;
     return;
   }
 
   wrap.hidden = false;
   const perPage = 5;
-  const carousel = photos.length > perPage;
+  const carousel = list.length > perPage;
 
   if (!carousel) {
     const page = document.createElement("div");
     page.className = "blog-gallery-page is-static";
-    page.style.gridTemplateColumns = `repeat(${photos.length}, minmax(0, 1fr))`;
-    photos.forEach((src) => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = "";
-      page.appendChild(img);
-    });
+    page.style.gridTemplateColumns = `repeat(${list.length}, minmax(0, 1fr))`;
+    list.forEach((photo) => addGalleryImage(page, photo));
     track.appendChild(page);
     return;
   }
 
   const pages = [];
-  for (let i = 0; i < photos.length; i += perPage) {
+  for (let i = 0; i < list.length; i += perPage) {
     const page = document.createElement("div");
     page.className = "blog-gallery-page";
-    photos.slice(i, i + perPage).forEach((src) => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = "";
-      page.appendChild(img);
-    });
+    list.slice(i, i + perPage).forEach((photo) => addGalleryImage(page, photo));
     track.appendChild(page);
     pages.push(page);
   }
@@ -391,6 +445,7 @@ function initBlogPost() {
         if (post.cover) {
           cover.src = post.cover;
           cover.alt = post.title || "";
+          cover.style.objectPosition = focusStyle(post.cover_focus);
           coverFrame.hidden = false;
         } else {
           cover.removeAttribute("src");

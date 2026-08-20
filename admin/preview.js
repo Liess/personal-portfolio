@@ -5,7 +5,8 @@
 
   function text(entry, key) {
     var value = entry.getIn(["data", key]);
-    return value == null ? "" : String(value);
+    if (value == null) return "";
+    return typeof value === "string" ? value : String(value);
   }
 
   function listOf(value) {
@@ -23,24 +24,72 @@
     return [];
   }
 
-  function assetUrl(getAsset, path) {
-    if (!path) return "";
-    var asset = getAsset(path);
-    if (!asset) return String(path);
-    return typeof asset.toString === "function" ? asset.toString() : String(asset);
+  function hasMedia(value) {
+    if (value == null || value === false) return false;
+    var path = typeof value === "string" ? value : String(value);
+    return Boolean(path) && path !== "undefined" && path !== "[object Object]" && path !== "empty.svg";
   }
 
-  function galleryPaths(entry) {
+  function assetUrl(getAsset, value) {
+    if (!hasMedia(value)) return "";
+    var path = typeof value === "string" ? value : String(value);
+    try {
+      var asset = getAsset(value);
+      var url = "";
+      if (asset) {
+        if (asset.url) url = asset.url;
+        else if (typeof asset.toString === "function") url = asset.toString();
+      }
+      if (url && url.indexOf("empty.svg") === -1) return url;
+    } catch (err) {
+      /* fall through to public path */
+    }
+    if (path.indexOf("http") === 0 || path.indexOf("blob:") === 0 || path.indexOf("data:") === 0) {
+      return path;
+    }
+    return path.charAt(0) === "/" ? path : "/" + path.replace(/^\/+/, "");
+  }
+
+  function parseFocus(value) {
+    var raw = value;
+    if (raw && typeof raw.toJS === "function") raw = raw.toJS();
+    if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+      return (Number(raw.x) || 50) + "% " + (Number(raw.y) || 50) + "%";
+    }
+    var text = String(raw == null ? "50 50" : raw).trim();
+    var parts = text.split(/[\s,]+/);
+    var x = Number(parts[0]);
+    var y = Number(parts[1]);
+    if (isNaN(x)) x = 50;
+    if (isNaN(y)) y = 50;
+    return x + "% " + y + "%";
+  }
+
+  function galleryValues(entry) {
     return listOf(entry.getIn(["data", "gallery"]))
       .map(function (item) {
-        if (!item) return "";
-        if (typeof item === "string") return item;
-        return item.image || item.src || "";
+        if (!item) return null;
+        if (typeof item === "string") return { src: item, focus: "50% 50%" };
+        var src = item.image || item.src || "";
+        if (!hasMedia(src)) return null;
+        return { src: src, focus: parseFocus(item.focus || item) };
       })
       .filter(Boolean);
   }
 
   var BlogPreview = createClass({
+    componentDidMount: function () {
+      var self = this;
+      this._ticks = 0;
+      this._timer = setInterval(function () {
+        self._ticks += 1;
+        self.forceUpdate();
+        if (self._ticks > 25) clearInterval(self._timer);
+      }, 400);
+    },
+    componentWillUnmount: function () {
+      clearInterval(this._timer);
+    },
     render: function () {
       var entry = this.props.entry;
       var getAsset = this.props.getAsset;
@@ -50,8 +99,10 @@
       var location = text(entry, "location");
       var country = text(entry, "country");
       var place = location ? [location, country].filter(Boolean).join(" · ") : "";
-      var cover = assetUrl(getAsset, text(entry, "cover"));
-      var photos = galleryPaths(entry);
+      var coverValue = entry.getIn(["data", "cover"]);
+      var coverSrc = assetUrl(getAsset, coverValue);
+      var coverFocus = parseFocus(entry.getIn(["data", "cover_focus"]));
+      var photos = galleryValues(entry);
       var pageCount = Math.max(1, Math.ceil(photos.length / 5));
       var visible = photos.slice(0, 5);
 
@@ -78,9 +129,14 @@
           ),
           h("section", { className: "blog-main" },
             h("div", { className: "blog-article" },
-              cover
+              hasMedia(coverValue)
                 ? h("figure", { className: "blog-cover-frame" },
-                    h("img", { className: "blog-cover", src: cover, alt: title })
+                    h("img", {
+                      className: "blog-cover",
+                      src: coverSrc,
+                      alt: title,
+                      style: { objectPosition: coverFocus },
+                    })
                   )
                 : null,
               visible.length
@@ -93,11 +149,12 @@
                           gridTemplateColumns: "repeat(" + visible.length + ", minmax(0, 1fr))",
                         },
                       },
-                        visible.map(function (src, index) {
+                        visible.map(function (photo, index) {
                           return h("img", {
-                            key: src + index,
-                            src: assetUrl(getAsset, src),
+                            key: String(photo.src) + index,
+                            src: assetUrl(getAsset, photo.src),
                             alt: "",
+                            style: { objectPosition: photo.focus },
                           });
                         })
                       )
@@ -118,7 +175,7 @@
   });
 
   CMS.registerPreviewStyle("/css/styles.css");
-  CMS.registerPreviewStyle("/admin/preview.css");
+  CMS.registerPreviewStyle("/admin/preview.css?v=live-media");
   CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
   CMS.registerPreviewTemplate("blog", BlogPreview);
 })();
