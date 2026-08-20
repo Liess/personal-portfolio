@@ -50,6 +50,34 @@
     return path.charAt(0) === "/" ? path : "/" + path.replace(/^\/+/, "");
   }
 
+  function isEditorPhoto(img) {
+    if (!img || (img.closest && img.closest(".focal-frame"))) return false;
+    var src = img.currentSrc || img.src || "";
+    if (!src || src.indexOf("empty.svg") !== -1) return false;
+    return /blob:|data:image|assets\/blog|raw\.githubusercontent/i.test(src) || img.naturalWidth > 40;
+  }
+
+  function editorPhotos() {
+    try {
+      var doc = window.parent && window.parent !== window ? window.parent.document : document;
+      var imgs = doc.querySelectorAll("img");
+      var out = [];
+      for (var i = 0; i < imgs.length; i += 1) {
+        if (isEditorPhoto(imgs[i])) out.push(imgs[i].currentSrc || imgs[i].src);
+      }
+      return out;
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function liveSrc(getAsset, path, fallback) {
+    var url = assetUrl(getAsset, path);
+    if (url && (url.indexOf("blob:") === 0 || url.indexOf("data:") === 0)) return url;
+    if (fallback) return fallback;
+    return url;
+  }
+
   function parseFocus(value) {
     var raw = value;
     if (raw && typeof raw.toJS === "function") raw = raw.toJS();
@@ -80,11 +108,8 @@
   var BlogPreview = createClass({
     componentDidMount: function () {
       var self = this;
-      this._ticks = 0;
       this._timer = setInterval(function () {
-        self._ticks += 1;
         self.forceUpdate();
-        if (self._ticks > 25) clearInterval(self._timer);
       }, 400);
     },
     componentWillUnmount: function () {
@@ -100,9 +125,13 @@
       var country = text(entry, "country");
       var place = location ? [location, country].filter(Boolean).join(" · ") : "";
       var coverValue = entry.getIn(["data", "cover"]);
-      var coverSrc = assetUrl(getAsset, coverValue);
       var coverFocus = parseFocus(entry.getIn(["data", "cover_focus"]));
       var photos = galleryValues(entry);
+      var livePhotos = editorPhotos();
+      var coverSrc = hasMedia(coverValue)
+        ? liveSrc(getAsset, coverValue, livePhotos[0])
+        : "";
+      var galleryLive = hasMedia(coverValue) ? livePhotos.slice(1) : livePhotos;
       var pageCount = Math.max(1, Math.ceil(photos.length / 5));
       var visible = photos.slice(0, 5);
 
@@ -152,7 +181,7 @@
                         visible.map(function (photo, index) {
                           return h("img", {
                             key: String(photo.src) + index,
-                            src: assetUrl(getAsset, photo.src),
+                            src: liveSrc(getAsset, photo.src, galleryLive[index]),
                             alt: "",
                             style: { objectPosition: photo.focus },
                           });
@@ -175,7 +204,7 @@
   });
 
   CMS.registerPreviewStyle("/css/styles.css");
-  CMS.registerPreviewStyle("/admin/preview.css?v=live-media");
+  CMS.registerPreviewStyle("/admin/preview.css?v=crop3");
   CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
   CMS.registerPreviewTemplate("blog", BlogPreview);
 })();
