@@ -95,9 +95,12 @@ const TRAVEL = [
         lat: 14.603,
         lng: 120.384,
         photos: galleryPics("Philippines/LasCasas", "LasCasaspic", 13),
-        videos: galleryMedia("Philippines/LasCasas", [
-          "lascasasvid1.mp4",
-          "lascasasvid5.mp4",
+        videos: galleryVids("Philippines/LasCasas", "lascasasvid", [
+          ".mp4",
+          ".mp4",
+          ".mp4",
+          ".mp4",
+          ".mp4",
         ]),
         article: siteUrl("travel.html") + "?country=philippines&city=las-casas-bataan",
       },

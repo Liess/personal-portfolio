@@ -3,8 +3,3 @@ Desktop.ini
 .DS_Store
 .env
 .env.*
-
-# Over GitHub's 100MB file limit
-assets/gallery/Philippines/LasCasas/lascasasvid2.mp4
-assets/gallery/Philippines/LasCasas/lascasasvid3.mp4
-assets/gallery/Philippines/LasCasas/lascasasvid4.mp4
