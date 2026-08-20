@@ -3,13 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Side quest | Coming soon</title>
+    <title>Side quest | Ernest John Maskariño</title>
+    <meta
+      name="description"
+      content="Off-the-clock notes: more into me, travel, personal space and workstation, vlog, and blogs."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a2330'/><text x='50' y='64' text-anchor='middle' font-size='36' font-family='Inter' fill='%238eb6d9'>EJ</text></svg>" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
     <header class="site-header" id="header">
       <div class="header-inner">
         <a href="index.html" class="brand"><span>EJ</span><small>/ Maskariño</small></a>
@@ -20,18 +31,398 @@
           <a href="index.html#about" class="nav-flip"><span>ABOUT</span><span>ABOUT</span></a>
           <a href="index.html#career" class="nav-flip"><span>CAREER</span><span>CAREER</span></a>
           <a href="index.html#work" class="nav-flip"><span>WORK</span><span>WORK</span></a>
-          <a href="side-quest.html" class="nav-flip"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
+          <a href="side-quest.html" class="nav-flip" aria-current="page"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
           <a href="investment.html" class="nav-flip"><span>INVESTMENT PORTFOLIO</span><span>INVESTMENT PORTFOLIO</span></a>
           <a href="index.html#contact" class="nav-flip"><span>CONTACT</span><span>CONTACT</span></a>
         </nav>
       </div>
     </header>
-    <main class="soon">
-      <p class="eyebrow">Side quest</p>
-      <h1>Coming soon</h1>
-      <p class="lede">Personal experiments, builds, and side projects will live here.</p>
-      <a class="btn-resume" href="index.html">← Back home</a>
+
+    <aside class="social-rail" aria-label="Social links">
+      <span class="rail-line"></span>
+      <a href="https://www.linkedin.com/in/ejmaskarino" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="mailto:maskarinoernestjohn@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+      </a>
+      <a href="tel:+639151373096" aria-label="Phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <span class="rail-line down"></span>
+    </aside>
+
+    <main class="quest">
+      <section class="quest-hero" id="top">
+        <div class="wide">
+          <h3 class="eyebrow">Side quest</h3>
+          <h1 class="display">Off the<br /><span class="accent">client clock</span></h1>
+          <p class="lead quest-lead">
+            Integrations pay the bills. This page is the rest: who I am off the resume, places I land,
+            the room I work from, camera notes, and writing that is not a RAML spec.
+          </p>
+          <nav class="quest-jump" aria-label="Side quest sections">
+            <a href="#me">More into me</a>
+            <a href="#socials">Socials</a>
+            <a href="#travel">Travel</a>
+            <a href="#space">Space &amp; desk</a>
+            <a href="#vlog">Vlog</a>
+            <a href="#blogs">Blogs</a>
+          </nav>
+        </div>
+      </section>
+
+      <section id="me">
+        <div class="wide">
+          <h3 class="eyebrow">01 — More into me</h3>
+          <h2>Off the resume, still me</h2>
+          <p class="sub">Pictures, a few facts that do not belong on a CV, and the rest of the page.</p>
+
+          <div class="me-grid">
+            <div class="me-photos" id="me-photos">
+              <div class="me-photo me-photo-b" aria-hidden="true">
+                <img id="me-photo-next" src="assets/images/portraits/ejpic2.jpg" alt="" />
+              </div>
+              <button type="button" class="me-photo me-photo-a" id="me-photo-now" aria-label="Next portrait">
+                <img id="me-photo-current" src="assets/images/portraits/ejpic1.jpg" alt="EJ" />
+              </button>
+              <div class="me-photos-bar">
+                <button type="button" id="me-photo-prev" aria-label="Previous portrait">←</button>
+                <span id="me-photo-num">01</span>
+                <button type="button" id="me-photo-next-btn" aria-label="Next portrait">→</button>
+              </div>
+            </div>
+            <div class="me-copy">
+              <p class="lead quest-lead">
+                Lead Consultant by weekday. The rest is slower: a kitchen that is not a standup,
+                a suitcase that keeps filling, and a desk that stays on after the last merge.
+              </p>
+              <div class="me-copy-break" aria-hidden="true"></div>
+              <p class="me-copy-block">
+                I live in the Philippines. I build APIs for a living, tutor models on the side,
+                and spend the leftover hours on trips, food, and whatever camera I remembered to charge.
+                The career page has the client work. This block is the person who closes the laptop.
+              </p>
+              <dl class="me-facts">
+                <div>
+                  <dt>Based</dt>
+                  <dd>Philippines</dd>
+                </div>
+                <div>
+                  <dt>Hobbies</dt>
+                  <dd>Badminton, gaming, travel, consuming anime and manga</dd>
+                </div>
+                <div>
+                  <dt>Interests</dt>
+                  <dd>AI, Crypto, Investments, vlogging, work-life balance and min-maxing life</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="me-trivia" id="me-trivia">
+            <div class="me-trivia-head">
+              <div>
+                <p class="eyebrow">Trivia</p>
+                <h3>Not on the resume</h3>
+              </div>
+              <div class="me-trivia-bar">
+                <button type="button" id="me-trivia-prev" aria-label="Previous fact">←</button>
+                <span id="me-trivia-num">01</span>
+                <button type="button" id="me-trivia-next" aria-label="Next fact">→</button>
+              </div>
+            </div>
+            <div class="me-trivia-stage" id="me-trivia-stage" tabindex="0" aria-label="Trivia carousel">
+              <article class="me-trivia-card" data-n="01" data-tag="Perfume">
+                <p>I love collecting perfumes from local, designer, and niche fragrance houses. I also collect a signature perfume from each country I visit. My favorites are Amouage Outlands as my signature scent and Louis Vuitton Pacific Chill for a clean, fresh scent.</p>
+              </article>
+              <article class="me-trivia-card me-trivia-card--photo" data-n="02" data-tag="E-sport">
+                <p>I was once a professional esports player for Mobile Legends: Bang Bang (MLBB). I named our team “Mizu Chimu,” which means “water team,” because my teammates were also my workmates at a water utility company.</p>
+                <img src="assets/images/trivia/mizu-chimu.png" alt="Mizu Chimu jersey, LIESS" />
+              </article>
+              <article class="me-trivia-card me-trivia-card--photo" data-n="03" data-tag="Pets">
+                <p>I’m both a cat lover and a dog lover. Mochi and Sachi🐱 PanPan🐶</p>
+                <div class="me-trivia-pets">
+                  <img src="assets/images/trivia/pet-dog.png" alt="PanPan in a tuxedo" />
+                  <img src="assets/images/trivia/pet-cats.png" alt="Mochi and Sachi on the shelf" />
+                </div>
+              </article>
+              <article class="me-trivia-card" data-n="04" data-tag="Crypto">
+                <p>I was once quite active in the crypto space and built a significant following around it. However, I wasn’t able to fully commit to it because of my busy schedule. You can check out my old page here: <a href="https://www.facebook.com/NesFBPH/" target="_blank" rel="noopener noreferrer">NesFBPH on Facebook</a>.</p>
+              </article>
+              <article class="me-trivia-card me-trivia-card--photo" data-n="05" data-tag="Spots">
+                <p>I love rooftops. Whenever I’m feeling down, I like to hang out at my favorite rooftop spots. I’ve explored so many rooftops around Metro Manila that I’ve practically memorized all the best ones.</p>
+                <img src="assets/images/trivia/rooftop.png" alt="Night rooftop overlooking Metro Manila" />
+              </article>
+              <article class="me-trivia-card" data-n="06" data-tag="Marriage">
+                <p>At one point in my life, I covered weddings and worked as a drone pilot. I was fascinated by the idea of capturing weddings from a unique perspective, but eventually realized that I didn’t want to get married myself.</p>
+              </article>
+              <article class="me-trivia-card" data-n="07" data-tag="Games">
+                <p>I enjoy tactical and strategy games, and I occasionally play shooters as well. I peaked at Diamond in both League of Legends and Teamfight Tactics (TFT), and Platinum in Valorant. My favorite game of all time is Assassin’s Creed II, while Warcraft and StarCraft are my favorite strategy games.</p>
+              </article>
+              <article class="me-trivia-card" data-n="08" data-tag="Fear">
+                <p>I’m afraid of heights and deep water, but I’ve always believed in challenging myself. That’s why I enrolled in swimming and freediving lessons to overcome those fears. Skydiving is next on my list.</p>
+              </article>
+              <article class="me-trivia-card" data-n="08" data-tag="Food">
+                <p>My favorite food is lechon kawali, which I ate almost every day during my lunch break throughout my college years. It became a staple of my college life and still holds a special place in my heart.</p>
+              </article>
+            </div>
+            <div class="me-trivia-dots" id="me-trivia-dots"></div>
+          </div>
+
+          <div class="me-hobbies">
+            <article>
+              <h3>Travel</h3>
+              <p>Stamps that are not Jira tickets. The atlas below is the log.</p>
+              <a href="#travel">Open the map →</a>
+            </article>
+            <article>
+              <h3>Camera</h3>
+              <p>Desk tours and trip fragments. The vlog is queued until the first cut is public.</p>
+              <a href="#vlog">Vlog notes →</a>
+            </article>
+            <article>
+              <h3>The desk</h3>
+              <p>Warm lamps, dual display, Anypoint and Cursor still open after hours.</p>
+              <a href="#space">Workstation →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="socials">
+        <div class="wide">
+          <h3 class="eyebrow">02 — Socials</h3>
+          <h2>Find me off the clock</h2>
+          <p class="sub">Discord, YouTube, Twitter, and Instagram. LinkedIn stays on the career page.</p>
+          <div class="quest-socials">
+            <a class="quest-social" href="https://discordapp.com/users/279194234362265601" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8.5 14.2a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Z"/><path d="M18.6 5.3A15.7 15.7 0 0 0 14.5 4l-.4.7a13.8 13.8 0 0 1 3.5 1.1 11.9 11.9 0 0 0-10.2 0A13.8 13.8 0 0 1 9.9 4.7L9.5 4a15.7 15.7 0 0 0-4.1 1.3C2.4 9.2 1.8 13 2.1 16.7A16 16 0 0 0 7 18.8l.7-1.1a10 10 0 0 1-1.6-.8l.3-.2c3.1 1.4 6.5 1.4 9.6 0l.3.2c-.5.3-1 .6-1.6.8l.7 1.1a16 16 0 0 0 4.9-2.1c.4-3.9-.6-7.7-2.7-11.4Z"/></svg>
+              <h3>Discord</h3>
+              <p>neskopi</p>
+            </a>
+            <a class="quest-social" href="https://www.youtube.com/@nes5906" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22.5 12s0-3.2-.4-4.6a2.9 2.9 0 0 0-2-2C18.2 5 12 5 12 5s-6.2 0-8.1.4a2.9 2.9 0 0 0-2 2C1.5 8.8 1.5 12 1.5 12s0 3.2.4 4.6a2.9 2.9 0 0 0 2 2c1.9.4 8.1.4 8.1.4s6.2 0 8.1-.4a2.9 2.9 0 0 0 2-2c.4-1.4.4-4.6.4-4.6Z"/><path d="m10 15.5 5.2-3.5L10 8.5v7Z"/></svg>
+              <h3>YouTube</h3>
+              <p>Nes</p>
+            </a>
+            <a class="quest-social" href="https://x.com/NesqqTFT" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h4.6l4.2 5.7L17.7 4H20l-6.2 7.4L20.5 20h-4.6l-4.6-6.3L6.3 20H4l6.7-8L4 4Z"/></svg>
+              <h3>X</h3>
+              <p>@NesqqTFT</p>
+            </a>
+            <a class="quest-social" href="https://www.instagram.com/its.nesqq/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+              <h3>Instagram</h3>
+              <p>@its.nesqq</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="travel">
+        <div class="wide no-reveal">
+          <h3 class="eyebrow">03 — Travel</h3>
+          <h2>Where work and weekends overlap</h2>
+          <p class="sub">A personal atlas. Hover a country, click a pin, open the city gallery.</p>
+
+          <div class="world-wrap">
+            <div id="journal-map" class="journal-map" role="application" aria-label="Travel journal world map">
+              <div class="jm-viewport">
+                <div class="jm-stage">
+                  <div class="jm-plane">
+                    <div class="jm-world" aria-hidden="true"></div>
+                    <div class="jm-pins"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="jm-tools" aria-label="Map controls">
+                <button type="button" data-jm="in" aria-label="Zoom in">+</button>
+                <button type="button" data-jm="out" aria-label="Zoom out">−</button>
+                <button type="button" data-jm="reset" aria-label="Reset to world view">⌂</button>
+              </div>
+              <p class="jm-hud"><span class="jm-hud-name">This is my world</span></p>
+              <article class="jm-card" hidden></article>
+            </div>
+            <p class="world-legend">Drag to pan · scroll to zoom · click a pin for the city gallery.</p>
+          </div>
+
+          <div class="place-carousel">
+            <div class="place-countries" id="place-countries" role="tablist" aria-label="Countries visited"></div>
+            <div class="place-carousel-bar">
+              <span class="place-carousel-num" id="place-num">01</span>
+              <div class="work-nav">
+                <button type="button" id="place-prev" aria-label="Previous city">←</button>
+                <div class="work-dots" id="place-dots"></div>
+                <button type="button" id="place-next" aria-label="Next city">→</button>
+              </div>
+            </div>
+            <div class="place-carousel-stage" id="quest-places">
+              <div class="place-track" id="place-track"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="space">
+        <div class="wide">
+          <h3 class="eyebrow">04 — Personal space &amp; workstation</h3>
+          <h2>The room behind the stand-ups</h2>
+          <p class="sub">Two corners of the same apartment: where I live, and where Anypoint stays open.</p>
+
+          <div class="desk-stage" id="desk-stage">
+            <div class="desk-stage-inner" id="desk-tilt">
+              <video
+                id="desk-video"
+                src="assets/video/cozy-setup.mp4"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Cozy workstation setup"
+              ></video>
+              <div class="desk-vignette" aria-hidden="true"></div>
+              <div class="desk-spot" id="desk-spot" aria-hidden="true"></div>
+              <div class="desk-grain" aria-hidden="true"></div>
+              <div class="desk-hud">
+                <span>Workstation · live desk</span>
+                <span class="desk-hint">Move · hover to light · click to play</span>
+              </div>
+              <div class="desk-scrub" id="desk-scrub" role="slider" aria-label="Video position" tabindex="0">
+                <div class="desk-scrub-bar" id="desk-scrub-bar"></div>
+              </div>
+            </div>
+            <div class="desk-controls">
+              <button type="button" id="desk-play" aria-label="Pause video">Pause</button>
+              <button type="button" id="desk-mute" aria-label="Unmute video">Sound off</button>
+              <button type="button" id="desk-cinema-btn" aria-label="Open cinema view">Cinema</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="desk-cinema" id="desk-cinema" hidden>
+          <button type="button" class="desk-cinema-close" id="desk-cinema-close" aria-label="Close cinema">✕</button>
+          <div class="desk-cinema-frame" id="desk-cinema-frame"></div>
+        </div>
+
+        <div class="wide">
+          <div class="quest-space">
+            <article>
+              <div class="quest-frame quest-frame-space" aria-hidden="true">
+                <span>Personal space</span>
+              </div>
+              <h3>Personal space</h3>
+              <p>
+                Low light, plants if they survive me, and a couch that is not for Slack.
+                This is the off-duty half: music, a book, and no production alerts on the wall.
+              </p>
+              <div class="chips">
+                <span>Quiet hours</span>
+                <span>Home cooking</span>
+                <span>No stand-up sofa</span>
+              </div>
+            </article>
+            <article>
+              <h3>The kit</h3>
+              <p>
+                Consultant kit in the clip above: warm lamps, a real desk, Anypoint Studio,
+                Cursor, and a notes app that holds RAML fragments I should have committed already.
+              </p>
+              <div class="chips">
+                <span>Anypoint Studio</span>
+                <span>Cursor</span>
+                <span>Dual display</span>
+                <span>Noise-cancelling</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="vlog">
+        <div class="wide">
+          <h3 class="eyebrow">05 — Vlog</h3>
+          <h2>Camera when the build is done</h2>
+          <p class="sub">Short clips: desk tours, travel fragments, and whatever is not an incident channel.</p>
+          <div class="quest-vlog">
+            <div class="quest-player">
+              <div class="quest-player-screen">
+                <span class="quest-play" aria-hidden="true">▶</span>
+                <p>First episode is not up yet</p>
+              </div>
+              <div class="quest-player-meta">
+                <h3>Episode 00 — Hello from the desk</h3>
+                <p>A walkthrough of the workstation and why this page exists. Channel link goes here when the first cut is public.</p>
+              </div>
+            </div>
+            <ol class="quest-episodes">
+              <li>
+                <span>01</span>
+                <div>
+                  <h4>Travel fragment</h4>
+                  <p>Airport wifi, one meal, one street.</p>
+                </div>
+                <em>Queued</em>
+              </li>
+              <li>
+                <span>02</span>
+                <div>
+                  <h4>Setup tour</h4>
+                  <p>Monitors, cables, and the one plant that lived.</p>
+                </div>
+                <em>Queued</em>
+              </li>
+              <li>
+                <span>03</span>
+                <div>
+                  <h4>After hours</h4>
+                  <p>What I watch and cook when Runtime Manager is quiet.</p>
+                </div>
+                <em>Queued</em>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="blogs">
+        <div class="wide">
+          <h3 class="eyebrow">06 — Blogs</h3>
+          <h2>Writing that is not a Jira comment</h2>
+          <p class="sub">Longer notes on travel, the desk, and the work — published here as they exist.</p>
+          <div class="quest-blogs">
+            <article>
+              <p class="meta">Desk</p>
+              <h3>How I keep a consultant workstation from taking the whole apartment</h3>
+              <p>Boundaries between the production laptop and the rest of the room. Draft in progress.</p>
+              <span class="quest-status">Writing</span>
+            </article>
+            <article>
+              <p class="meta">Travel</p>
+              <h3>Work cities vs. weekend cities</h3>
+              <p>What I actually do with twelve hours in a place that is on the project plan, not the guidebook.</p>
+              <span class="quest-status">Queued</span>
+            </article>
+            <article>
+              <p class="meta">Craft</p>
+              <h3>Notes from tutoring LLMs after a day of Mule flows</h3>
+              <p>Two kinds of debugging. One pays in Jira tickets; the other pays in better questions.</p>
+              <span class="quest-status">Queued</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="quest-close">
+        <div class="narrow">
+          <h3 class="eyebrow">More later</h3>
+          <p class="lead">Photos, embeds, and full posts land as I make them. The career page stays for the client work.</p>
+          <a class="btn-resume" href="index.html">← Back home</a>
+        </div>
+      </section>
     </main>
-    <script src="script.js"></script>
+
+    <script src="js/travel-map.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

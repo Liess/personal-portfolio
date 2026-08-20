@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Travel gallery | Ernest John Maskariño</title>
+    <meta name="description" content="Photo gallery from the side quest map." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a2330'/><text x='50' y='64' text-anchor='middle' font-size='36' font-family='Inter' fill='%238eb6d9'>EJ</text></svg>" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <header class="site-header" id="header">
+      <div class="header-inner">
+        <a href="index.html" class="brand"><span>EJ</span><small>/ Maskariño</small></a>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="site-nav">
+          <a href="index.html#about" class="nav-flip"><span>ABOUT</span><span>ABOUT</span></a>
+          <a href="index.html#career" class="nav-flip"><span>CAREER</span><span>CAREER</span></a>
+          <a href="index.html#work" class="nav-flip"><span>WORK</span><span>WORK</span></a>
+          <a href="side-quest.html" class="nav-flip" aria-current="page"><span>SIDE QUEST</span><span>SIDE QUEST</span></a>
+          <a href="investment.html" class="nav-flip"><span>INVESTMENT PORTFOLIO</span><span>INVESTMENT PORTFOLIO</span></a>
+          <a href="index.html#contact" class="nav-flip"><span>CONTACT</span><span>CONTACT</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="quest gallery-page">
+      <section class="quest-hero">
+        <div class="wide">
+          <p class="eyebrow" id="gallery-tag">Travel</p>
+          <h1 class="display" id="gallery-title">Gallery</h1>
+          <p class="lead quest-lead" id="gallery-copy"></p>
+          <div class="quest-jump" id="gallery-jump"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wide">
+          <h2 class="gallery-heading">Photos</h2>
+          <div class="gallery-grid" id="gallery-grid"></div>
+          <div class="gallery-videos" id="gallery-videos-wrap" hidden>
+            <h2 class="gallery-heading">Videos</h2>
+            <p class="sub gallery-videos-lead">Clips from the same trip, not stills.</p>
+            <div class="gallery-grid gallery-video-grid" id="gallery-videos"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+      <button type="button" class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous">←</button>
+      <figure>
+        <img id="lightbox-img" alt="" />
+        <video id="lightbox-video" controls playsinline loop hidden></video>
+        <figcaption id="lightbox-cap"></figcaption>
+      </figure>
+      <button type="button" class="lightbox-nav next" id="lightbox-next" aria-label="Next">→</button>
+    </div>
+
+    <script src="js/travel-map.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
