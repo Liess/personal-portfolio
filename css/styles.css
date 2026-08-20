@@ -606,6 +606,10 @@ section {
   margin-bottom: 12px;
 }
 
+.eyebrow[hidden] {
+  display: none;
+}
+
 .lead {
   font-size: clamp(1.25rem, 2.2vw, 1.65rem);
   font-weight: 300;
@@ -2783,6 +2787,21 @@ a.quest-blog-link:hover {
   position: absolute;
   top: 16px;
   right: 16px;
+}
+
+.lightbox-nav[hidden] {
+  display: none;
+}
+
+.lightbox.is-photo img {
+  max-width: min(96vw, 1400px);
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.blog-zoom,
+.blog-cover-frame {
+  cursor: zoom-in;
 }
 
 .quest-frame {

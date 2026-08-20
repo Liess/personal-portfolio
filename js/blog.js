@@ -114,10 +114,7 @@ function loadBlogPosts() {
               cover: parsed.data.cover || "",
               gallery,
               excerpt: parsed.data.excerpt || "",
-              card_image: card.image || parsed.data.card_image || parsed.data.cover || "",
-              card_title: card.title || parsed.data.card_title || "",
-              card_excerpt: card.excerpt || parsed.data.card_excerpt || "",
-              card_label: card.label || parsed.data.card_label || "",
+              card_title: parsed.data.card_title || parsed.data["card-title"] || card.label || "",
               tags,
               showcase: parsed.data.showcase,
               published: parsed.data.published,
@@ -181,23 +178,16 @@ function renderBlogCards(root, posts, mode) {
       node.className = "quest-blog-link";
     }
     const place = [post.location, post.country].filter(Boolean).join(", ");
-    const title = post.card_title || post.title || "Untitled";
-    const excerpt = post.card_excerpt || post.excerpt || "";
-    const label =
-      post.card_label ||
-      (post.tags || []).find((tag) => String(tag).toLowerCase() !== "showcase") ||
-      (isShowcase(post) ? "Showcase" : "") ||
-      post.country ||
-      "Note";
-    const thumb = post.card_image
-      ? `<img class="quest-blog-thumb" src="${escapeBlog(post.card_image)}" alt="">`
+    const kicker = post.card_title || "";
+    const thumb = post.cover
+      ? `<img class="quest-blog-thumb" src="${escapeBlog(post.cover)}" alt="">`
       : "";
     node.innerHTML = `
       ${thumb}
       <div class="quest-blog-copy">
-        <p class="meta">${escapeBlog(label)}</p>
-        <h3>${escapeBlog(title)}</h3>
-        <p>${escapeBlog(excerpt)}</p>
+        ${kicker ? `<p class="meta">${escapeBlog(kicker)}</p>` : ""}
+        <h3>${escapeBlog(post.title || "Untitled")}</h3>
+        <p>${escapeBlog(post.excerpt || "")}</p>
         <span class="quest-status">${escapeBlog(place || (published ? "Published" : "Draft"))}</span>
       </div>
     `;
@@ -297,6 +287,64 @@ function renderBlogGallery(srcs) {
   show();
 }
 
+function bindBlogLightbox() {
+  const box = document.getElementById("blog-lightbox");
+  const img = document.getElementById("blog-lightbox-img");
+  const close = document.getElementById("blog-lightbox-close");
+  const prev = document.getElementById("blog-lightbox-prev");
+  const next = document.getElementById("blog-lightbox-next");
+  if (!box || !img) return;
+
+  const cover = document.getElementById("blog-cover");
+  const coverFrame = document.getElementById("blog-cover-frame");
+  const nodes = [];
+  if (cover && coverFrame && !coverFrame.hidden && cover.getAttribute("src")) nodes.push(cover);
+  document.querySelectorAll("#blog-gallery img, #blog-body img").forEach((el) => nodes.push(el));
+  const sources = nodes.map((el) => el.getAttribute("src") || el.src).filter(Boolean);
+  if (!sources.length) return;
+
+  let index = 0;
+  const show = (i) => {
+    index = (i + sources.length) % sources.length;
+    img.src = sources[index];
+    img.alt = "";
+    box.hidden = false;
+    if (prev) prev.hidden = sources.length < 2;
+    if (next) next.hidden = sources.length < 2;
+  };
+  const hide = () => {
+    box.hidden = true;
+    img.removeAttribute("src");
+  };
+
+  nodes.forEach((el, i) => {
+    el.classList.add("blog-zoom");
+    el.onclick = () => show(i);
+  });
+  if (close) close.onclick = hide;
+  box.onclick = (event) => {
+    if (event.target === box) hide();
+  };
+  if (prev) {
+    prev.onclick = (event) => {
+      event.stopPropagation();
+      show(index - 1);
+    };
+  }
+  if (next) {
+    next.onclick = (event) => {
+      event.stopPropagation();
+      show(index + 1);
+    };
+  }
+  document.addEventListener("keydown", (event) => {
+    if (box.hidden) return;
+    if (event.key === "Escape") hide();
+    if (event.key === "ArrowLeft") show(index - 1);
+    if (event.key === "ArrowRight") show(index + 1);
+  });
+}
+
 function initBlogPost() {
   const titleEl = document.getElementById("blog-title");
   const tagEl = document.getElementById("blog-tag");
@@ -315,11 +363,15 @@ function initBlogPost() {
       }
       document.title = `${post.title} | Ernest John Maskariño`;
       titleEl.textContent = post.title;
-      const label =
-        post.card_label ||
-        (post.tags || []).find((tag) => String(tag).toLowerCase() !== "showcase") ||
-        "Blog";
-      if (tagEl) tagEl.textContent = label;
+      if (tagEl) {
+        if (post.card_title) {
+          tagEl.textContent = post.card_title;
+          tagEl.hidden = false;
+        } else {
+          tagEl.textContent = "";
+          tagEl.hidden = true;
+        }
+      }
       const excerpt = document.getElementById("blog-excerpt");
       if (excerpt) excerpt.textContent = post.excerpt || "";
       const placeEl = document.getElementById("blog-place");
@@ -351,6 +403,7 @@ function initBlogPost() {
       } else {
         bodyEl.textContent = post.body || "";
       }
+      bindBlogLightbox();
     })
     .catch(() => {
       titleEl.textContent = "Could not load the post";

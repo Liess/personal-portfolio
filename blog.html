@@ -69,8 +69,17 @@
       </section>
     </main>
 
+    <div class="lightbox is-photo" id="blog-lightbox" hidden>
+      <button type="button" class="lightbox-close" id="blog-lightbox-close" aria-label="Close">✕</button>
+      <button type="button" class="lightbox-nav prev" id="blog-lightbox-prev" aria-label="Previous">←</button>
+      <figure>
+        <img id="blog-lightbox-img" alt="" />
+      </figure>
+      <button type="button" class="lightbox-nav next" id="blog-lightbox-next" aria-label="Next">→</button>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/marked@15.0.0/marked.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/blog.js?v=card-hero"></script>
+    <script src="js/blog.js?v=lightbox"></script>
   </body>
 </html>

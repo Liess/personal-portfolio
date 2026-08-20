@@ -1,0 +1,31 @@
+html,
+body {
+  margin: 0;
+  background: #1a2330;
+  color: #e8eef6;
+}
+
+.cms-preview-blog .site-header {
+  position: relative;
+  inset: auto;
+  padding: 12px 24px;
+  background: transparent;
+}
+
+.cms-preview-blog .nav-toggle {
+  display: none;
+}
+
+.cms-preview-blog .quest-hero {
+  padding-top: 28px;
+  padding-bottom: 24px;
+}
+
+.cms-preview-blog .blog-main {
+  padding-bottom: 48px;
+}
+
+.cms-preview-blog .cursor-dot,
+.cms-preview-blog .cursor-ring {
+  display: none;
+}

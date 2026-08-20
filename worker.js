@@ -37,11 +37,14 @@ collections:
     extension: md
     format: yaml-frontmatter
     preview_path: blog.html?slug={{slug}}
-    sortable_fields: ["travel_date", "title", "country"]
+    summary: "{{title}}"
+    identifier_field: slug
+    sortable_fields:
+      - { field: travel_date, label: Newest to oldest, default_sort: desc }
+      - { field: title, label: Title }
     view_groups:
       - label: Country
         field: country
-    identifier_field: slug
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Slug, name: slug, widget: string, hint: "URL key, e.g. boracay-white-beach" }
@@ -53,24 +56,18 @@ collections:
         name: gallery
         widget: list
         required: false
-        field: { label: Image, name: image, widget: image }
+        label_singular: Photo
+        collapsed: true
+        summary: "{{fields.image}}"
+        hint: "Add photos. A carousel appears on the post only if there are more than 5."
+        field: { name: image, label: Photo, widget: image }
       - { label: Excerpt, name: excerpt, widget: text }
-      - label: Card
-        name: card
-        widget: object
-        collapsed: false
-        hint: "Listing card on Side quest and All blogs. Leave a field blank to fall back to the post."
-        fields:
-          - { label: Image, name: image, widget: image, required: false, hint: "Falls back to Cover Image." }
-          - { label: Title, name: title, widget: string, required: false, hint: "Falls back to Title." }
-          - { label: Excerpt, name: excerpt, widget: text, required: false, hint: "Falls back to Excerpt." }
-          - { label: Label, name: label, widget: string, required: false, hint: "Small kicker such as Travel. Falls back to the first tag." }
+      - { label: Card title, name: card_title, widget: string, required: false, hint: "One word on the listing card and the post eyebrow, e.g. Travel." }
       - label: Tags
         name: tags
         widget: list
         required: false
-        hint: "Add an item named showcase to feature this post on Side quest (up to 3)."
-        field: { label: Tag, name: tag, widget: string }
+        hint: "Comma-separated words. Include showcase to feature this post on Side quest."
       - { label: Showcase, name: showcase, widget: boolean, default: false, hint: "Also features the post on Side quest." }
       - { label: Body, name: body, widget: markdown }
       - { label: Published, name: published, widget: boolean, default: false }
