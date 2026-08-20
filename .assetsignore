@@ -1,0 +1,13 @@
+.git/
+.wrangler/
+node_modules/
+.assetsignore
+.gitignore
+.gitattributes
+wrangler.jsonc
+*.md
+.env
+.env.*
+Thumbs.db
+Desktop.ini
+.DS_Store
