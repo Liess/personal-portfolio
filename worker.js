@@ -33,21 +33,36 @@ collections:
     folder: content/blog
     create: true
     delete: true
-    slug: "{{slug}}"
+    slug: "{{fields.slug}}"
     extension: md
     format: yaml-frontmatter
     preview_path: blog.html?slug={{slug}}
-    sortable_fields: ["date", "title", "status"]
+    sortable_fields: ["travel_date", "title", "country"]
     view_groups:
-      - label: Status
-        field: status
+      - label: Country
+        field: country
+    identifier_field: slug
     fields:
       - { label: Title, name: title, widget: string }
-      - { label: Tag, name: tag, widget: string, hint: "Desk, Travel, Craft, …" }
-      - { label: Status, name: status, widget: select, options: ["Published", "Writing", "Queued"], default: "Writing" }
-      - { label: Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Slug, name: slug, widget: string, hint: "URL key, e.g. boracay-white-beach" }
+      - { label: Travel Date, name: travel_date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Location, name: location, widget: string, hint: "City or spot" }
+      - { label: Country, name: country, widget: string }
+      - { label: Cover Image, name: cover, widget: image, required: false }
+      - label: Gallery
+        name: gallery
+        widget: list
+        required: false
+        field: { label: Image, name: image, widget: image }
       - { label: Excerpt, name: excerpt, widget: text }
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: "Add showcase to feature a post on Side quest (up to 3)."
+        field: { label: Tag, name: tag, widget: string }
       - { label: Body, name: body, widget: markdown }
+      - { label: Published, name: published, widget: boolean, default: false }
 `;
   return new Response(yaml, {
     headers: {

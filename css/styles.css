@@ -3102,8 +3102,29 @@ a.quest-blog-link:hover {
   margin-bottom: 1rem;
 }
 
-.blog-body a {
-  color: var(--teal);
+.blog-cover {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  max-height: 72vh;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.blog-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  max-width: 960px;
+  margin: 0 0 32px;
+}
+
+.blog-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .quest-close {
@@ -3111,6 +3132,10 @@ a.quest-blog-link:hover {
 }
 
 .quest-close .btn-resume {
+  margin-top: 28px;
+}
+
+.blog-more {
   margin-top: 28px;
 }
 

@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Blog | Ernest John Maskariño</title>
-    <meta name="description" content="A longer note from the side quest." />
+    <title>Blogs | Ernest John Maskariño</title>
+    <meta name="description" content="All notes from the side quest." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,27 +35,25 @@
       </div>
     </header>
 
-    <main class="quest blog-page">
+    <main class="quest">
       <section class="quest-hero">
         <div class="wide">
-          <p class="eyebrow" id="blog-tag">Blog</p>
-          <h1 class="display" id="blog-title">Loading</h1>
-          <p class="lead quest-lead" id="blog-excerpt"></p>
+          <p class="eyebrow">Blogs</p>
+          <h1 class="display">All the<br /><span class="accent">notes</span></h1>
+          <p class="lead quest-lead">Every post from the side quest, newest first.</p>
           <div class="quest-jump">
-            <a href="side-quest.html#blogs">← Blogs</a>
+            <a href="side-quest.html#blogs">← Side quest</a>
+            <a href="admin/">Write in CMS</a>
           </div>
         </div>
       </section>
       <section>
         <div class="wide">
-          <img id="blog-cover" class="blog-cover" alt="" hidden />
-          <div class="blog-gallery" id="blog-gallery" hidden></div>
-          <article class="blog-body" id="blog-body"></article>
+          <div class="quest-blogs" data-blog-list="all"></div>
         </div>
       </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.0/marked.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/blog.js"></script>
   </body>
