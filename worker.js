@@ -44,7 +44,7 @@ collections:
               - { label: Slug, name: slug, widget: string, hint: "URL key, e.g. consultant-workstation" }
               - { label: Tag, name: tag, widget: string }
               - { label: Status, name: status, widget: select, options: ["Published", "Writing", "Queued"], default: "Writing" }
-              - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+              - { label: Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
               - { label: Excerpt, name: excerpt, widget: text }
               - { label: Body, name: body, widget: markdown }
 `;
