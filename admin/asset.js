@@ -59,10 +59,6 @@
         return "";
       }
     }
-    if (file.displayURL && typeof file.displayURL === "object") {
-      var nested = file.displayURL.url || file.displayURL.path || "";
-      if (isUsableUrl(nested)) return nested;
-    }
     return "";
   }
 
@@ -79,21 +75,14 @@
     return "";
   }
 
-  function relativePath(value) {
-    var name = basename(value);
-    return name ? "assets/blog/" + name : "";
-  }
-
   function fromGetAsset(getAsset, value, field) {
-    if (!getAsset) return "";
-    var path = relativePath(value);
-    if (!path) return "";
+    if (!getAsset || !hasMedia(value)) return "";
     try {
-      var asset = field ? getAsset(path, field) : getAsset(path);
+      var asset = field ? getAsset(value, field) : getAsset(value);
       if (!asset) return "";
       var url = asset.url || (typeof asset.toString === "function" ? asset.toString() : "");
       if (!isUsableUrl(url)) return "";
-      remember(path, url);
+      remember(value, url);
       return url;
     } catch (err) {
       return "";
@@ -117,48 +106,14 @@
     var asset = fromGetAsset(getAsset, path, field);
     if (asset && isBlobUrl(asset)) return asset;
     if (name && cache[name]) return cache[name];
-    if (asset && isUsableUrl(asset) && asset.indexOf("assets/blog/") !== 0) return asset;
+    if (asset && isUsableUrl(asset)) return asset;
     return publicPath(path);
   }
-
-  function patchGetAsset(getAsset, field) {
-    if (!getAsset) return getAsset;
-    return function (path, widgetField) {
-      var name = basename(path);
-      if (name) return getAsset("assets/blog/" + name, widgetField || field);
-      return getAsset(path, widgetField || field);
-    };
-  }
-
-  function wrapImageWidget() {
-    var CMS = root.CMS;
-    var createClass = root.createClass;
-    var h = root.h;
-    if (!CMS || !createClass || !h || typeof CMS.getWidget !== "function") return;
-    var widget = CMS.getWidget("image");
-    if (!widget || !widget.control || widget.control.__draftPatched) return;
-    var Control = widget.control;
-    var Wrapped = createClass({
-      render: function () {
-        var next = {};
-        for (var key in this.props) {
-          if (Object.prototype.hasOwnProperty.call(this.props, key)) next[key] = this.props[key];
-        }
-        next.getAsset = patchGetAsset(this.props.getAsset, this.props.field);
-        return h(Control, next);
-      },
-    });
-    Wrapped.__draftPatched = true;
-    CMS.registerWidget("image", Wrapped, widget.preview);
-  }
-
-  wrapImageWidget();
 
   root.CMSMedia = {
     basename: basename,
     hasMedia: hasMedia,
     remember: remember,
     resolve: resolve,
-    patchGetAsset: patchGetAsset,
   };
 })(window);

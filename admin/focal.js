@@ -2,7 +2,21 @@
   var h = window.h;
   var createClass = window.createClass;
   var CMS = window.CMS;
-  var media = window.CMSMedia;
+  var media = window.CMSMedia || {
+    hasMedia: function (value) {
+      return Boolean(value);
+    },
+    remember: function () {},
+    resolve: function (getAsset, value) {
+      if (!getAsset || value == null) return "";
+      try {
+        var asset = getAsset(value);
+        return asset && (asset.url || asset.toString()) || String(value);
+      } catch (err) {
+        return String(value || "");
+      }
+    },
+  };
 
   function parsePair(value) {
     var raw = value;
