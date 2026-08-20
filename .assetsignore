@@ -5,6 +5,7 @@ node_modules/
 .gitignore
 .gitattributes
 wrangler.jsonc
+worker.js
 *.md
 .env
 .env.*

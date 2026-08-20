@@ -1,11 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "personal-portfolio",
+  "main": "worker.js",
   "compatibility_date": "2026-08-20",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "GITHUB_OAUTH_CLIENT_ID": "Ov23liME667BO7Shmth0"
   }
 }

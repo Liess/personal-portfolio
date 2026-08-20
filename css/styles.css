@@ -2180,6 +2180,7 @@ time {
 .quest-journal article,
 .quest-space article,
 .quest-blogs article,
+.quest-blogs a.quest-blog-link,
 .quest-episodes li {
   border: 1px solid var(--line);
   background: var(--panel);
@@ -2190,7 +2191,8 @@ time {
   display: block;
 }
 
-a.quest-place:hover {
+a.quest-place:hover,
+a.quest-blog-link:hover {
   border-color: rgba(142, 182, 217, 0.35);
   background: rgba(142, 182, 217, 0.06);
 }
@@ -3079,6 +3081,28 @@ a.quest-place:hover {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--teal);
+}
+
+.blog-body {
+  max-width: 720px;
+  color: var(--ink);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.blog-body h2,
+.blog-body h3 {
+  margin: 1.6rem 0 0.6rem;
+}
+
+.blog-body p,
+.blog-body ul,
+.blog-body ol {
+  margin-bottom: 1rem;
+}
+
+.blog-body a {
   color: var(--teal);
 }
 

@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "title": "How I keep a consultant workstation from taking the whole apartment",
+      "slug": "consultant-workstation",
+      "tag": "Desk",
+      "status": "Writing",
+      "date": "2026-08-01",
+      "excerpt": "Boundaries between the production laptop and the rest of the room. Draft in progress.",
+      "body": "Draft in progress."
+    },
+    {
+      "title": "Work cities vs. weekend cities",
+      "slug": "work-cities-weekend-cities",
+      "tag": "Travel",
+      "status": "Queued",
+      "date": "2026-08-08",
+      "excerpt": "What I actually do with twelve hours in a place that is on the project plan, not the guidebook.",
+      "body": "Queued."
+    },
+    {
+      "title": "Notes from tutoring LLMs after a day of Mule flows",
+      "slug": "tutoring-llms-after-mule",
+      "tag": "Craft",
+      "status": "Queued",
+      "date": "2026-08-15",
+      "excerpt": "Two kinds of debugging. One pays in Jira tickets; the other pays in better questions.",
+      "body": "Queued."
+    }
+  ]
+}
