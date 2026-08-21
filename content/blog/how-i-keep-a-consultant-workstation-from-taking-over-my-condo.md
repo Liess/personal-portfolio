@@ -1,7 +1,7 @@
 ---
 title: How I Keep a Consultant Workstation From Taking Over My Condo
 slug: How-I-Keep-a-Consultant-Workstation-From-Taking-Over-My-Condo
-travel_date: 2026-08-20
+date: 2026-08-20
 location: Home
 country: Philippines
 cover: /assets/blog/photo_2026-08-21_06-04-14.jpg
@@ -13,6 +13,7 @@ tags:
   - work
 showcase: true
 published: true
+travel_date: 2026-08-20
 ---
 # How I Keep a Consultant Workstation From Taking the Whole Condo
 
