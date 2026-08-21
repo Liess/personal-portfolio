@@ -238,7 +238,7 @@ function renderBlogCards(root, posts, mode) {
     root.appendChild(empty);
     return;
   }
-  posts.forEach((post) => {
+  posts.forEach((post, index) => {
     const published = isPublished(post);
     const node = document.createElement(published ? "a" : "article");
     if (published) {

@@ -37,7 +37,7 @@ collections:
     extension: md
     format: yaml-frontmatter
     preview_path: blog.html?slug={{slug}}
-    summary: "{{title}}"
+    summary: "{{title}}|||{{date}}"
     identifier_field: slug
     sortable_fields:
       - { field: date, label: Posted date, default_sort: desc }
@@ -48,7 +48,7 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Slug, name: slug, widget: string, hint: "URL key, e.g. boracay-white-beach" }
-      - { label: Posted date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, default: "{{now}}" }
+      - { label: Posted date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", default: "{{now}}" }
       - { label: Location, name: location, widget: string, hint: "City or spot" }
       - { label: Country, name: country, widget: string }
       - { label: Cover Image, name: cover, widget: image, required: false }

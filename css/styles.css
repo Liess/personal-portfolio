@@ -3493,26 +3493,26 @@ a.quest-blog-link:hover {
   }
 }
 
-main.quest > section:not(.is-in) .eyebrow,
-main.quest > section:not(.is-in) h1,
-main.quest > section:not(.is-in) h2,
-main.quest > section:not(.is-in) .sub,
-main.quest > section:not(.is-in) .quest-lead,
-main.quest > section:not(.is-in) .quest-jump a,
-main.quest > section:not(.is-in) .me-photos,
-main.quest > section:not(.is-in) .me-copy,
-main.quest > section:not(.is-in) .me-trivia,
-main.quest > section:not(.is-in) .me-hobbies article,
-main.quest > section:not(.is-in) .quest-social,
-main.quest > section:not(.is-in) .world-wrap,
-main.quest > section:not(.is-in) .place-carousel,
-main.quest > section:not(.is-in) .desk-stage,
-main.quest > section:not(.is-in) .quest-space article,
-main.quest > section:not(.is-in) .quest-player,
-main.quest > section:not(.is-in) .quest-episodes li,
-main.quest > section:not(.is-in) .quest-blogs > *,
-main.quest > section:not(.is-in) .blog-more,
-main.quest > section.quest-close:not(.is-in) .narrow > * {
+main.quest:not(.blog-page) > section:not(.is-in) .eyebrow,
+main.quest:not(.blog-page) > section:not(.is-in) h1,
+main.quest:not(.blog-page) > section:not(.is-in) h2,
+main.quest:not(.blog-page) > section:not(.is-in) .sub,
+main.quest:not(.blog-page) > section:not(.is-in) .quest-lead,
+main.quest:not(.blog-page) > section:not(.is-in) .quest-jump a,
+main.quest:not(.blog-page) > section:not(.is-in) .me-photos,
+main.quest:not(.blog-page) > section:not(.is-in) .me-copy,
+main.quest:not(.blog-page) > section:not(.is-in) .me-trivia,
+main.quest:not(.blog-page) > section:not(.is-in) .me-hobbies article,
+main.quest:not(.blog-page) > section:not(.is-in) .quest-social,
+main.quest:not(.blog-page) > section:not(.is-in) .world-wrap,
+main.quest:not(.blog-page) > section:not(.is-in) .place-carousel,
+main.quest:not(.blog-page) > section:not(.is-in) .desk-stage,
+main.quest:not(.blog-page) > section:not(.is-in) .quest-space article,
+main.quest:not(.blog-page) > section:not(.is-in) .quest-player,
+main.quest:not(.blog-page) > section:not(.is-in) .quest-episodes li,
+main.quest:not(.blog-page) > section:not(.is-in) .quest-blogs > *,
+main.quest:not(.blog-page) > section:not(.is-in) .blog-more,
+main.quest:not(.blog-page) > section.quest-close:not(.is-in) .narrow > * {
   opacity: 0;
 }
 
