@@ -13,7 +13,7 @@ tags:
   - Craft
   - showcase
 showcase: true
-published: false
+published: true
 ---
 # Notes From Tutoring LLMs After a Day of Mule Flows
 
